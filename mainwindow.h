@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 #include <QDebug>
+#include <menu1.h>
 
 namespace Ui {
 class MainWindow;

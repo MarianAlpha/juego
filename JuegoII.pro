@@ -26,13 +26,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    menu1.cpp \
+    funciones.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    menu1.h \
+    funciones.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    menu1.ui
 
 RESOURCES += \
     fondo.qrc

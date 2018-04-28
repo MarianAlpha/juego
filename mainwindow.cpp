@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "funciones.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,4 +21,9 @@ void MainWindow::on_Start_clicked()
 {
     player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
     player->play();
+    delay(3);
+    menu1*MainWindow = new menu1;
+    MainWindow->show();
+    close();
+
 }
