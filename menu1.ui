@@ -32,6 +32,44 @@
     <bool>true</bool>
    </property>
   </widget>
+  <widget class="QPushButton" name="newgame">
+   <property name="geometry">
+    <rect>
+     <x>180</x>
+     <y>130</y>
+     <width>211</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dead Kansas</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>New game</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="loadgame">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>210</y>
+     <width>191</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Dead Kansas</family>
+     <pointsize>18</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>load game</string>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="fondo.qrc"/>

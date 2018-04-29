@@ -28,16 +28,19 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
     menu1.cpp \
-    funciones.cpp
+    funciones.cpp \
+    menu2.cpp
 
 HEADERS += \
         mainwindow.h \
     menu1.h \
-    funciones.h
+    funciones.h \
+    menu2.h
 
 FORMS += \
         mainwindow.ui \
-    menu1.ui
+    menu1.ui \
+    menu2.ui
 
 RESOURCES += \
     fondo.qrc
