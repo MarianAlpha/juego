@@ -23,6 +23,8 @@ private slots:
 
     void on_loadgame_clicked();
 
+    void on_return_3_clicked();
+
 private:
     Ui::menu1 *ui;
     QMediaPlayer *player;

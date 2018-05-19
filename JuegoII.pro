@@ -29,13 +29,21 @@ SOURCES += \
         mainwindow.cpp \
     menu1.cpp \
     funciones.cpp \
-    menu2.cpp
+    menu2.cpp \
+    game.cpp \
+    personaje.cpp \
+    proyectil.cpp \
+    villano.cpp
 
 HEADERS += \
         mainwindow.h \
     menu1.h \
     funciones.h \
-    menu2.h
+    menu2.h \
+    game.h \
+    personaje.h \
+    proyectil.h \
+    villano.h
 
 FORMS += \
         mainwindow.ui \
@@ -43,4 +51,5 @@ FORMS += \
     menu2.ui
 
 RESOURCES += \
-    fondo.qrc
+    fondo.qrc \
+    gif.qrc

@@ -22,6 +22,8 @@ public:
 private slots:
     void on_Start_clicked();
 
+    void on_quitgame_clicked();
+
 private:
     Ui::MainWindow *ui;
     QMediaPlayer *player;

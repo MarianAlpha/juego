@@ -11,6 +11,8 @@ menu2::menu2(QWidget *parent) :
 {
     ui->setupUi(this);
     player =new QMediaPlayer(this);
+    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/menu2.mp3"));
+    player->play();
 }
 
 menu2::~menu2()
@@ -22,7 +24,7 @@ void menu2::on_return_2_clicked()
 {
     player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
     player->play();
-    delay(3);
+    delay(2);
     menu1*menu2 = new menu1;
     menu2->show();
     close();
@@ -30,13 +32,26 @@ void menu2::on_return_2_clicked()
 
 void menu2::on_save_clicked()
 {
+    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
+    player->play();
+    delay(2);
+
     QString respuesta1=ui->pregunta1->text();
     respuesta1=respuesta1.toLower();
     QString respuesta2=ui->pregunta2->text();
     respuesta2=respuesta2.toLower();
     QString respuesta3=ui->pregunta3->text();
     respuesta3=respuesta3.toLower();
+
+
     if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
-        QMessageBox::information(this, tr("holi"), tr("holi %1").arg(respuesta1));
+        int a=1;
+        Game *game=new Game;
+        game->show();
+        close();
     }
+    else {
+        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
+    }
+
 }
