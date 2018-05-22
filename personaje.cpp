@@ -6,7 +6,7 @@ personaje::personaje(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pare
 {
     // draw the player
     setPixmap(QPixmap(":/Imagenes/p1.png"));
-    p2=setPixmap();
+    //p2=setPixmap();
     bandera = 0;
     bandera=0;
     delta = 0;
