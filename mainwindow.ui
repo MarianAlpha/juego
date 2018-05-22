@@ -170,12 +170,32 @@
      <bool>true</bool>
     </property>
    </widget>
+   <widget class="QLabel" name="presi">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>230</y>
+      <width>111</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Courgette</family>
+      <pointsize>9</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Señor Presidente</string>
+    </property>
+   </widget>
    <zorder>fondo</zorder>
    <zorder>Gif</zorder>
    <zorder>titulo</zorder>
    <zorder>Start</zorder>
    <zorder>quitgame</zorder>
    <zorder>gif</zorder>
+   <zorder>presi</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

@@ -24,15 +24,16 @@ class game: public QGraphicsView
 public:
     game();
     personaje *perso;
+    personaje * perso2;
     int cambio=0;
     QGraphicsScene *scene;
     QMediaPlayer *music=new QMediaPlayer();
-    //void keyReleaseEvent(QKeyEvent *event1);
+    void keyPressEvent(QKeyEvent * event);
+    void keyReleaseEvent(QKeyEvent * event);
     void setHeight(int w);
     QTimer *Tjump= new QTimer();
     QTimer * timercambio= new QTimer();
     QTimer *TGame= new QTimer();
-    personaje * perso2;
     QGraphicsView *ver;
     int vidas=3;
 };
