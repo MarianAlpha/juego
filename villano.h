@@ -13,6 +13,7 @@ class villano: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     explicit villano(QGraphicsItem *parent = nullptr);
+    QTimer * timer = new QTimer();
 private:
     int cont=0;
 signals:

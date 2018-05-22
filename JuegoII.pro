@@ -51,5 +51,8 @@ FORMS += \
     menu2.ui
 
 RESOURCES += \
-    fondo.qrc \
-    gif.qrc
+    gif.qrc \
+    fondo.qrc
+
+DISTFILES += \
+    Imagenes/lvl3.jpg

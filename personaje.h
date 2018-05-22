@@ -22,13 +22,12 @@ public:
     void resettBanRight();
     void setBandera();
     void resetBandera();
-    int bandera=0;
+    int bandera=0,c=0;
 
 private:
     QMediaPlayer *music=new QMediaPlayer();
     int ban_left;
     int ban_right;
-    int cont=0;
     int height;
     float delta = 0;
 

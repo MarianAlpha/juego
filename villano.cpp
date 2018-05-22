@@ -9,17 +9,13 @@
 villano::villano(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 {
     setPixmap((QPixmap(":/Imagenes/malo.png")));
-    QTimer * timer = new QTimer();
     connect(timer, SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
 
 }
 void villano::move()
 {
-    setPos(x()-5,y()); // mover a la izquierda
-    if (x() < 400){
-        scene()->removeItem(this);
-        delete this;
-    }
+    if(pos().x() > 500) setPos(x()-5,y()); // mover a la izquierda
+    else setPos(x(),y());
 }
 

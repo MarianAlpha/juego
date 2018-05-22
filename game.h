@@ -31,11 +31,13 @@ public:
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
     void setHeight(int w);
+    void cambia();
     QTimer *Tjump= new QTimer();
     QTimer * timercambio= new QTimer();
     QTimer *TGame= new QTimer();
+    QTimer *nivel = new QTimer();
     QGraphicsView *ver;
-    int vidas=3;
+    int vidas=3,cont=0;
 };
 
 #endif // GAME_H
