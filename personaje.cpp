@@ -5,8 +5,7 @@
 personaje::personaje(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 {
     // draw the player
-    setPixmap(QPixmap(":/Imagenes/p1.png"));
-    p2=setPixmap();
+
     bandera = 0;
     bandera=0;
     delta = 0;
@@ -14,6 +13,7 @@ personaje::personaje(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pare
 
 void personaje::keyPressEvent(QKeyEvent *event)
 {
+
     if(event->key()==Qt::Key_Left){
         if (pos().x() > 0){
             setPos(x()-10,y());
@@ -62,7 +62,7 @@ void personaje::jump()
     if (bandera == 1){
         delta+=0.1;
         posy = y() -35*delta + 20*delta*delta ;
-        setPos(x(),posy);
+        setPos(x()+10,posy);
         if (y() > height - 100){
             bandera = 0;
             delta=0;
@@ -70,4 +70,12 @@ void personaje::jump()
         }
 
     }
+}
+
+void personaje::generar()
+{
+
+    villano * enemigo = new villano();
+    enemigo->setPos(WIDTH-100,HEIGHT-130);
+    scene()->addItem(enemigo); //se coloca en la escena para que sea mostrada
 }

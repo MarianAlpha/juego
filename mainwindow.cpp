@@ -3,6 +3,7 @@
 #include "funciones.h"
 #include <QLabel>
 #include <QMovie>
+#include "game.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -30,8 +31,11 @@ void MainWindow::on_Start_clicked()
     player->play();
     delay(2);
 
-    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
+    /*menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
     MainWindow->show();
+    close();*/
+    game *gamme =new game();
+    gamme->show();
     close();
 
 }

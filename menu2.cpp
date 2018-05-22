@@ -46,9 +46,9 @@ void menu2::on_save_clicked()
 
     if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
         int a=1;
-        Game *game=new Game;
-        game->show();
-        close();
+//        Gamee *game=new Gamee();
+//        game->show();
+//        close();
     }
     else {
         QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));

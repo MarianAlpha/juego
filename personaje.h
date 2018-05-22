@@ -19,6 +19,7 @@ public:
 private:
     QMediaPlayer *music=new QMediaPlayer();
     personaje *p2;
+    personaje *perso;
     int bandera;
     int bandera2,cont=0;
     float delta;
@@ -28,6 +29,8 @@ signals:
 
 public slots:
     void jump();
+    void generar();
 };
+
 
 #endif // PERSONAJE_H

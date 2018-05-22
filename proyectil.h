@@ -3,6 +3,7 @@
 
 #include <QGraphicsPixmapItem>
 #include <QObject>
+#include <typeinfo>
 
 class proyectil:public QObject, public QGraphicsPixmapItem
 { Q_OBJECT

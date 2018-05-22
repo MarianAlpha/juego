@@ -30,20 +30,20 @@ SOURCES += \
     menu1.cpp \
     funciones.cpp \
     menu2.cpp \
-    game.cpp \
     personaje.cpp \
     proyectil.cpp \
-    villano.cpp
+    villano.cpp \
+    game.cpp
 
 HEADERS += \
         mainwindow.h \
     menu1.h \
     funciones.h \
     menu2.h \
-    game.h \
     personaje.h \
     proyectil.h \
-    villano.h
+    villano.h \
+    game.h
 
 FORMS += \
         mainwindow.ui \
