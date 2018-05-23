@@ -13,9 +13,6 @@ class personaje: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     explicit personaje(QGraphicsItem *parent = nullptr);
-    //void keyPressEvent(QKeyEvent * event);
-    //void keyReleaseEvent(QKeyEvent *event1);
-    //void setHeight(int w);
     void settBanLeft();
     void settBanRight();
     void resettBanLeft();

@@ -4,37 +4,37 @@ game::game()
 {
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1000,400); //se agrega el tamaño de la escena y la coordenada inicial
-    scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg")));
-    setScene(scene); // colocar la escena que se desea visualizar
-    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //Quita las barras laterales
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(WIDTH,HEIGHT);
 
+    if(cont==0){
+        scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Imagen nivel 1
+        setScene(scene); // colocar la escena que se desea visualizar
 
-    QGraphicsPixmapItem *rect = new QGraphicsPixmapItem();
-    rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
-    rect->setPos(400,140);
-    scene->addItem(rect);
 
-    QGraphicsPixmapItem *rect1 = new QGraphicsPixmapItem();
-    rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
-    rect1->setPos(580,280);
-    scene->addItem(rect1);
+        //ladrillo
+        rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
+        rect->setPos(400,140);
+        scene->addItem(rect);
 
-    //musica de fondo
-    music->setMedia(QUrl("qrc:/sonido/fondolvl1.mp3"));
-    music->play();
+        //barricada
+        rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
+        rect1->setPos(580,280);
+        scene->addItem(rect1);
 
-    //personaje 1
+        //musica de fondo
+        music->setMedia(QUrl("qrc:/sonido/fondolvl1.mp3"));
+        music->play();
+    }
+    //player 1
     perso = new personaje();
     perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-    //perso->setFlag(QGraphicsItem::ItemIsFocusable); // primero le decimos que rect pueda ser enfoncable
-    // enfoncar el item (sólo el que está enfoncado es el que responde a eventos de teclado)
-    //perso->setFocus(); // se coloca el foco en rect
     perso->setPos(15,280) ; // posicion inicial del jugador //
     perso->setHeight(HEIGHT);
     scene->addItem(perso);
 
+    //player 2
     perso2 =new personaje();
     perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
     perso2->setPos(20,280);
@@ -42,17 +42,13 @@ game::game()
     scene->addItem(perso2);
 
     //malo
-//    villano *muymalo=new villano();
-//    muymalo->setPos(500, 150);
     QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));
     TGame->start(2500);
 
 
-    QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump()));
-    QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump()));
+    QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump())); //saltar player1
+    QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump())); //saltar player2
     Tjump->start(45);
-    QObject::connect(nivel, SIGNAL(timeout()),perso2,SLOT(cambia()));
-    nivel->start(30);
 
 }
 
@@ -78,10 +74,10 @@ void game::keyPressEvent(QKeyEvent *event)
         qDebug() << "bullet";
     }
     else if(event->key()==Qt::Key_Up){
-       perso->setBandera();
+        perso->setBandera();
     }
 
-//___________personaje 2___________________________
+    //___________personaje 2___________________________
 
     else if (event->key() == Qt::Key_A){
         perso2->settBanLeft();
@@ -102,10 +98,36 @@ void game::keyPressEvent(QKeyEvent *event)
 
     }
     else if(event->key()==Qt::Key_W){
-       perso2->setBandera();
+        perso2->setBandera();
+    }
+    //____________LEVEL2_________________________________________________
+    //cont=1;
+    if(perso->pos().x()>800 && perso2->pos().x()>800) {
+        cont++;
+        if(cont==1){
+            scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
+            perso->setPos(15, 280);
+            perso2->setPos(20, 280);
+            scene->removeItem(rect);
+            perso->c=0;
+        }
+        else if(cont==2){
+            scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
+            perso->setPos(15, 280);
+            perso2->setPos(20, 280);
+        }
+        else if(cont==3){
+            scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
+            perso->setPos(15, 280);
+            perso2->setPos(20, 280);
+        }
+        else if(cont==4){
+            scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
+            perso->setPos(15, 280);
+            perso2->setPos(20, 280);
+        }
     }
 }
-
 void game::keyReleaseEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left){
@@ -131,9 +153,3 @@ void game::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-void game::cambia()
-{
-    if(perso->pos().x()==900){
-        setBackgroundBrush(QPixmap(":/Imagenes/lvl3.jpg"));
-    }
-}

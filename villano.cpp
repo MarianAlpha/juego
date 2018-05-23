@@ -11,7 +11,6 @@ villano::villano(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
     setPixmap((QPixmap(":/Imagenes/malo.png")));
     connect(timer, SIGNAL(timeout()),this,SLOT(move()));
     timer->start(50);
-
 }
 void villano::move()
 {

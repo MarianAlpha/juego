@@ -5,14 +5,16 @@
 #include <QObject>
 #include <QTimer>
 #include <typeinfo>
+#include "personaje.h"
 
 class proyectil:public QObject, public QGraphicsPixmapItem
 { Q_OBJECT
 public:
     proyectil();
     QTimer *timer= new QTimer();
+    int bye; //contador de malos
 public slots:
-    void move();
+    void move();//proyectiles personajes
 };
 
 #endif // PROYECTIL_H

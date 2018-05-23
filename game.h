@@ -7,7 +7,7 @@
 #include <QTimer>
 #include <QImage>
 #include <QMediaPlayer>
-#include "personaje.h"
+#include <personaje.h>
 #include <QKeyEvent>
 #include "proyectil.h"
 #include <QGraphicsRectItem>
@@ -26,17 +26,19 @@ public:
     personaje *perso;
     personaje * perso2;
     int cambio=0;
+    villano *malo=new villano();
+    QGraphicsLineItem *fin;
     QGraphicsScene *scene;
     QMediaPlayer *music=new QMediaPlayer();
-    void keyPressEvent(QKeyEvent * event);
-    void keyReleaseEvent(QKeyEvent * event);
-    void setHeight(int w);
-    void cambia();
+    QGraphicsPixmapItem *rect = new QGraphicsPixmapItem();
+    QGraphicsPixmapItem *rect1 = new QGraphicsPixmapItem();
     QTimer *Tjump= new QTimer();
     QTimer * timercambio= new QTimer();
     QTimer *TGame= new QTimer();
-    QTimer *nivel = new QTimer();
     QGraphicsView *ver;
+    void keyPressEvent(QKeyEvent * event);
+    void keyReleaseEvent(QKeyEvent * event);
+    void setHeight(int w);
     int vidas=3,cont=0;
 };
 

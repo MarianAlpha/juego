@@ -1,0 +1,31 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Imagenes/barricada.png</file>
+        <file>Imagenes/disparo.png</file>
+        <file>Imagenes/fondo.jpg</file>
+        <file>Imagenes/fondo.png</file>
+        <file>Imagenes/gato.png</file>
+        <file>Imagenes/lvl1.jpeg</file>
+        <file>Imagenes/lvl2.jpeg</file>
+        <file>Imagenes/lvl5.gif</file>
+        <file>Imagenes/malo.png</file>
+        <file>Imagenes/naruto.png</file>
+        <file>Imagenes/naruto1.jpg</file>
+        <file>Imagenes/p1.png</file>
+        <file>Imagenes/p2.png</file>
+        <file>Imagenes/p11.png</file>
+        <file>Imagenes/p22.png</file>
+        <file>Imagenes/perso.gif</file>
+        <file>Imagenes/pl11.png</file>
+        <file>Imagenes/pl12.png</file>
+        <file>Imagenes/pl22.png</file>
+        <file>Imagenes/pl23.png</file>
+        <file>Imagenes/proyectil.png</file>
+        <file>Imagenes/totoro1.png</file>
+        <file>sonido/boton.mp3</file>
+        <file>sonido/fondo.mp3</file>
+        <file>sonido/fondolvl1.mp3</file>
+        <file>sonido/menu1.mp3</file>
+        <file>sonido/menu2.mp3</file>
+    </qresource>
+</RCC>

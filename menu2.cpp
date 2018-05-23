@@ -44,14 +44,13 @@ void menu2::on_save_clicked()
     respuesta3=respuesta3.toLower();
 
 
-    if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
-        int a=1;
-//        Gamee *game=new Gamee();
-//        game->show();
+//    if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
+//        game *gamee=new game();
+//        gamee->show();
 //        close();
-    }
-    else {
-        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
-    }
+//    }
+//    else {
+//        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
+//    }
 
 }

@@ -35,52 +35,6 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="fondo">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>800</width>
-      <height>605</height>
-     </rect>
-    </property>
-    <property name="minimumSize">
-     <size>
-      <width>800</width>
-      <height>605</height>
-     </size>
-    </property>
-    <property name="maximumSize">
-     <size>
-      <width>800</width>
-      <height>605</height>
-     </size>
-    </property>
-    <property name="sizeIncrement">
-     <size>
-      <width>1000</width>
-      <height>500</height>
-     </size>
-    </property>
-    <property name="frameShape">
-     <enum>QFrame::NoFrame</enum>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-    <property name="pixmap">
-     <pixmap resource="fondo.qrc">:/Imagenes/fondo.jpg</pixmap>
-    </property>
-    <property name="scaledContents">
-     <bool>false</bool>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-    <property name="margin">
-     <number>0</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="titulo">
     <property name="geometry">
      <rect>
@@ -189,7 +143,23 @@
      <string>Señor Presidente</string>
     </property>
    </widget>
-   <zorder>fondo</zorder>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>-10</y>
+      <width>801</width>
+      <height>581</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="gif.qrc">:/Imagenes/fondo.jpg</pixmap>
+    </property>
+   </widget>
+   <zorder>label</zorder>
    <zorder>Gif</zorder>
    <zorder>titulo</zorder>
    <zorder>Start</zorder>
@@ -232,7 +202,6 @@
  <layoutdefault spacing="6" margin="11"/>
  <resources>
   <include location="gif.qrc"/>
-  <include location="fondo.qrc"/>
  </resources>
  <connections/>
 </ui>

@@ -14,6 +14,7 @@ personaje::personaje(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(pare
     connect(timer, SIGNAL(timeout()),this,SLOT(move_left()));
     connect(timer, SIGNAL(timeout()),this,SLOT(move_right()));
     timer->start(45);
+
 }
 
 void personaje::settBanLeft()
@@ -44,7 +45,7 @@ void personaje::setBandera()
 void personaje::move_right()
 {
     if (ban_right == 1){
-        if (pos().x() + 100  < 800){
+        if (pos().x() + 100  < 980){
             setPos(x() + 20, y());
             //qDebug() << "right";
         }

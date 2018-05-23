@@ -1,5 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>Imagenes/perso.gif</file>
+        <file>Imagenes/fondo.jpg</file>
+        <file>Imagenes/fondo.png</file>
     </qresource>
 </RCC>

@@ -54,5 +54,4 @@ RESOURCES += \
     gif.qrc \
     fondo.qrc
 
-DISTFILES += \
-    Imagenes/lvl3.jpg
+DISTFILES +=

@@ -16,6 +16,7 @@ void proyectil::move()
             scene()->removeItem(this);
             delete colliding_items[i];
             delete this;
+            bye++;
             return;
         }
     }
