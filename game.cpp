@@ -13,12 +13,12 @@ game::game()
         setScene(scene); // colocar la escena que se desea visualizar
 
 
-        //ladrillo
+        //QGraphicsPixmapItem *rect = new QGraphicsPixmapItem(); //ladrillo
         rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
         rect->setPos(400,140);
         scene->addItem(rect);
 
-        //barricada
+        //QGraphicsPixmapItem *rect1 = new QGraphicsPixmapItem(); //barricada
         rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
         rect1->setPos(580,280);
         scene->addItem(rect1);
@@ -41,8 +41,10 @@ game::game()
     perso2->setHeight(HEIGHT);
     scene->addItem(perso2);
 
-    //malo
-    QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));
+    //Villanos y trampas
+    QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));//Genera el Villano
+    QObject::connect(TGame2, SIGNAL(timeout()),perso,SLOT(generar3()));//Genera el alien del lvl2
+    QObject::connect(TGame1, SIGNAL(timeout()),perso,SLOT(generar2()));//Genera la trampa del lvl3
     TGame->start(2500);
 
 
@@ -100,8 +102,7 @@ void game::keyPressEvent(QKeyEvent *event)
     else if(event->key()==Qt::Key_W){
         perso2->setBandera();
     }
-    //____________LEVEL2_________________________________________________
-    //cont=1;
+    //_____________________NIVEL2__________________________________________________
     if(perso->pos().x()>800 && perso2->pos().x()>800) {
         cont++;
         if(cont==1){
@@ -110,24 +111,34 @@ void game::keyPressEvent(QKeyEvent *event)
             perso2->setPos(20, 280);
             scene->removeItem(rect);
             perso->c=0;
+            TGame2->start(2800);
         }
+        //_____________________NIVEL3__________________________________________________
         else if(cont==2){
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
             perso->setPos(15, 280);
             perso2->setPos(20, 280);
+            perso->c=0;
+            TGame1->start(2500);
         }
+        //_____________________NIVEL4__________________________________________________
         else if(cont==3){
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
             perso->setPos(15, 280);
             perso2->setPos(20, 280);
+            perso->c=0;
         }
+        //_____________________NIVEL FINAL__________________________________________________
         else if(cont==4){
             scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
             perso->setPos(15, 280);
             perso2->setPos(20, 280);
+            TGame1->stop();
+            TGame2->stop();
         }
     }
 }
+
 void game::keyReleaseEvent(QKeyEvent *event)
 {
     if (event->key() == Qt::Key_Left){
@@ -152,4 +163,3 @@ void game::keyReleaseEvent(QKeyEvent *event)
         qDebug() << "right 2 out";
     }
 }
-

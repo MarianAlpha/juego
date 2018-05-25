@@ -1,5 +1,7 @@
 #include "personaje.h"
 #include "game.h"
+#include "trampa.h"
+#include "aliens.h"
 #include "proyectil.h"
 
 personaje::personaje(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
@@ -91,4 +93,18 @@ void personaje::generar()
         enemigo->setPos(WIDTH-100,HEIGHT-130);
         scene()->addItem(enemigo); //se coloca en la escena para que sea mostrada
     }
+}
+
+void personaje::generar2()
+{
+    trampa * trap = new trampa();
+    trap->setPos(WIDTH-100,320);
+    scene()->addItem(trap); //se coloca en la escena para que sea mostrada
+}
+
+void personaje::generar3()
+{
+    aliens *alien = new aliens();
+    alien->setPos(WIDTH-100, 15);
+    scene()->addItem(alien);
 }

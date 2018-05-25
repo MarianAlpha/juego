@@ -7,7 +7,6 @@
 #include <QDebug>
 #include <QMediaPlayer>
 #include <QGraphicsScene>
-#include <fstream>
 
 class personaje: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
@@ -35,6 +34,8 @@ public slots:
     void move_right();
     void move_left();
     void generar();
+    void generar2();
+    void generar3();
     void jump();
     void setHeight(int);
 };

@@ -1,6 +1,5 @@
-#ifndef VILLANO_H
-#define VILLANO_H
-
+#ifndef ALIENS_H
+#define ALIENS_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
@@ -9,13 +8,12 @@
 #include <QGraphicsScene>
 #include <typeinfo>
 
-
-class villano: public QObject, public QGraphicsPixmapItem{
+class aliens : public QObject, public QGraphicsPixmapItem
+{
     Q_OBJECT
 public:
-    explicit villano(QGraphicsItem *parent = nullptr);
+    explicit aliens(QObject *parent = nullptr);
     QTimer * timer = new QTimer();
-//    QTimer *TShoot = new QTimer();
     int cont=0;
 private:
     int contador=0;
@@ -24,4 +22,5 @@ signals:
 public slots:
     void move();
 };
-#endif // VILLANO_H
+
+#endif // ALIENS_H

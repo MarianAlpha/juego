@@ -7,6 +7,7 @@
 #include <typeinfo>
 #include "personaje.h"
 
+
 class proyectil:public QObject, public QGraphicsPixmapItem
 { Q_OBJECT
 public:

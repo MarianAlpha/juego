@@ -14,7 +14,11 @@ villano::villano(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
 }
 void villano::move()
 {
+
     if(pos().x() > 500) setPos(x()-5,y()); // mover a la izquierda
     else setPos(x(),y());
+    //bala2->setPos(pos().x(),pos().y());
+    //scene()->addItem(bala2);
 }
+
 
