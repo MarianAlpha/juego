@@ -35,7 +35,8 @@ SOURCES += \
     villano.cpp \
     game.cpp \
     trampa.cpp \
-    aliens.cpp
+    aliens.cpp \
+    proyectilejecutivo.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -47,7 +48,8 @@ HEADERS += \
     villano.h \
     game.h \
     trampa.h \
-    aliens.h
+    aliens.h \
+    proyectilejecutivo.h
 
 FORMS += \
         mainwindow.ui \

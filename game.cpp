@@ -102,9 +102,9 @@ void game::keyPressEvent(QKeyEvent *event)
     else if(event->key()==Qt::Key_W){
         perso2->setBandera();
     }
-    //_____________________NIVEL2__________________________________________________
     if(perso->pos().x()>800 && perso2->pos().x()>800) {
         cont++;
+        //_____________________NIVEL2__________________________________________________
         if(cont==1){
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
             perso->setPos(15, 280);

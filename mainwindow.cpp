@@ -5,6 +5,7 @@
 #include <QMovie>
 #include <game.h>
 
+game *gamme;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -35,7 +36,7 @@ void MainWindow::on_Start_clicked()
 //    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
 //    MainWindow->show();
 //    close();
-    game *gamme =new game();
+    gamme =new game();
     gamme->show();
     close();
 

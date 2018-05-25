@@ -15,7 +15,7 @@ class villano: public QObject, public QGraphicsPixmapItem{
 public:
     explicit villano(QGraphicsItem *parent = nullptr);
     QTimer * timer = new QTimer();
-//    QTimer *TShoot = new QTimer();
+    QTimer *pum = new QTimer();
     int cont=0;
 private:
     int contador=0;
@@ -23,5 +23,6 @@ signals:
 
 public slots:
     void move();
+    void shoot();
 };
 #endif // VILLANO_H
