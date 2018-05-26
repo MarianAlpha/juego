@@ -1,6 +1,6 @@
 #include "villano.h"
 #include <QDebug>
-#include "game.h"
+#include "gameo.h"
 #include <QFont>
 #include "personaje.h"
 #include "proyectil.h"
@@ -28,6 +28,7 @@ void villano::move()
 void villano::shoot()
 {
     proyectilEjecutivo * bala = new proyectilEjecutivo();
+    setPixmap(QPixmap(":/Imagenes/malo1.png"));
     bala->setPos(this->x(),this->y());
     scene()->addItem(bala);
 }

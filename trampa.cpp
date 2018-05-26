@@ -1,6 +1,6 @@
 #include "trampa.h"
 #include <QDebug>
-#include "game.h"
+#include "gameo.h"
 #include <QFont>
 #include "personaje.h"
 #include "proyectil.h"

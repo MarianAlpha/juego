@@ -1,16 +1,16 @@
-#include "proyectilejecutivo.h"
+#include "proyectilalien.h"
 #include "gameo.h"
 
 extern gameO *gamme;
 
-proyectilEjecutivo::proyectilEjecutivo()
+ProyectilAlien::ProyectilAlien()
 {
-    setPixmap(QPixmap(":/Imagenes/gato.png"));
+    setPixmap(QPixmap(":/Imagenes/huevo.png"));
     connect(timer,SIGNAL(timeout()),this, SLOT(move()));
     timer->start(50);
 }
 
-void proyectilEjecutivo::move()
+void ProyectilAlien::move()
 {
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; i++ ){
@@ -21,8 +21,10 @@ void proyectilEjecutivo::move()
         }
     }
 
-    setPos(x()-20, y());
-    if (x() < 0){
+    setPos(x(), y()+20);
+    if(y() >300 && y()<380) setPixmap(QPixmap(":/Imagenes/boom.png"));
+    else{
+        setPos(x(),y());
         gamme->scene->removeItem(this);
         delete this;
     }

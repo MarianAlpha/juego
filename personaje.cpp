@@ -1,5 +1,5 @@
 #include "personaje.h"
-#include "game.h"
+#include "gameo.h"
 #include "trampa.h"
 #include "aliens.h"
 #include "proyectil.h"

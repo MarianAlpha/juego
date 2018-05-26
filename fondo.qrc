@@ -24,5 +24,7 @@
         <file>Imagenes/lvlu.png</file>
         <file>Imagenes/trampa.png</file>
         <file>Imagenes/alien.png</file>
+        <file>Imagenes/boom.png</file>
+        <file>Imagenes/huevo.png</file>
     </qresource>
 </RCC>

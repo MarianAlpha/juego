@@ -3,9 +3,9 @@
 #include "funciones.h"
 #include <QLabel>
 #include <QMovie>
-#include <game.h>
+#include <gameo.h>
 
-game *gamme;
+gameO *gamme;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -36,7 +36,7 @@ void MainWindow::on_Start_clicked()
 //    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
 //    MainWindow->show();
 //    close();
-    gamme =new game();
+    gamme =new gameO();
     gamme->show();
     close();
 

@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include <menu1.h>
-#include <game.h>
+#include <gameo.h>
 
 namespace Ui {
 class menu2;

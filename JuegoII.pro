@@ -33,10 +33,12 @@ SOURCES += \
     personaje.cpp \
     proyectil.cpp \
     villano.cpp \
-    game.cpp \
     trampa.cpp \
     aliens.cpp \
-    proyectilejecutivo.cpp
+    proyectilejecutivo.cpp \
+    proyectilalien.cpp \
+    gameo.cpp \
+    ramsey.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -46,15 +48,18 @@ HEADERS += \
     personaje.h \
     proyectil.h \
     villano.h \
-    game.h \
     trampa.h \
     aliens.h \
-    proyectilejecutivo.h
+    proyectilejecutivo.h \
+    proyectilalien.h \
+    gameo.h \
+    ramsey.h
 
 FORMS += \
         mainwindow.ui \
     menu1.ui \
-    menu2.ui
+    menu2.ui \
+    gameo.ui
 
 RESOURCES += \
     gif.qrc \

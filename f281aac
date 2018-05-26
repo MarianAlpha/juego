@@ -1,0 +1,23 @@
+[33mcommit f281aac3cad96febe40ff1a72c985e551c01a321[m[33m ([m[1;36mHEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Author: Mariana <mariana.paniagual@udea.edu.co>
+Date:   Sat May 19 14:37:51 2018 -0500
+
+    Inclusion de las funciones de movimiento y salto, personaje 1,  fondo y entorno del nivel 1
+
+[33mcommit e5e44deac9294ac779e4d617d2f7ecd6a91b91ba[m
+Author: Mariana <mariana.paniagual@udea.edu.co>
+Date:   Sat Apr 28 23:30:04 2018 -0500
+
+    Creacion de la tercera ventana y control de usuario
+
+[33mcommit 587c08f9aaae9844313c67dde6a2943fcafc5c25[m
+Author: Mariana <mariana.paniagual@udea.edu.co>
+Date:   Sat Apr 28 15:23:52 2018 -0500
+
+    Se añadio la ventana del menu2 y la musica de fondo
+
+[33mcommit a9c3244ab774cc846f49dde9484302b5942355cc[m
+Author: Mariana <mariana.paniagual@udea.edu.co>
+Date:   Fri Apr 27 23:07:43 2018 -0500
+
+    Primer boton y prototipo de interfaz, se añadieron sonidos
