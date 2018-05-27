@@ -33,6 +33,16 @@
     </rect>
    </property>
   </widget>
+  <widget class="QLineEdit" name="x">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>20</y>
+     <width>131</width>
+     <height>21</height>
+    </rect>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

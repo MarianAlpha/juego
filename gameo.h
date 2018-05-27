@@ -9,6 +9,7 @@
 #include <QMediaPlayer>
 #include <personaje.h>
 #include <QKeyEvent>
+#include "ramsey.h"
 #include "proyectil.h"
 #include <QGraphicsRectItem>
 #include <QGraphicsPixmapItem>
@@ -46,6 +47,7 @@ public:
     //Class
     personaje * perso2;
     personaje *perso;
+    Ramsey *ramsey;
 
     //Metodos y atributos
     void keyPressEvent(QKeyEvent * event);

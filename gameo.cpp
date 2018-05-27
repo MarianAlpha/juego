@@ -18,15 +18,15 @@ gameO::gameO(QWidget *parent) :
         ui->view->setScene(scene); // colocar la escena que se desea visualizar
 
 
-        //QGraphicsPixmapItem *rect = new QGraphicsPixmapItem(); //ladrillo
+        //ladrillo
         rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
         rect->setPos(400,140);
-        scene->addItem(rect);
+        //scene->addItem(rect);
 
-        //QGraphicsPixmapItem *rect1 = new QGraphicsPixmapItem(); //barricada
+        //barricada
         rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
         rect1->setPos(580,280);
-        scene->addItem(rect1);
+        //scene->addItem(rect1);
 
         //musica de fondo
         music->setMedia(QUrl("qrc:/sonido/fondolvl1.mp3"));
@@ -52,36 +52,35 @@ gameO::gameO(QWidget *parent) :
     QObject::connect(TGame1, SIGNAL(timeout()),perso,SLOT(generar2()));//Genera la trampa del lvl3
     TGame->start(2500);
 
+    //Timer saltos
     QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump())); //saltar player1
     QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump())); //saltar player2
     Tjump->start(45);
-
-
 }
 
 void gameO::keyPressEvent(QKeyEvent *event)
 {
     //personaje 1
-    if (event->key() == Qt::Key_J){
-        perso->settBanLeft();
+    if (event->key() == Qt::Key_J){              //Movimiento izquierda
+        perso->settBanLeft();                    //Levanta la bandera para moverse a la izquierda
         perso->setPixmap(QPixmap(":/Imagenes/p22"));
         qDebug() << "left";
 
-    } else if (event->key() == Qt::Key_L){
-        perso->settBanRight();
+    } else if (event->key() == Qt::Key_L){       //Movimiento izquierda
+        perso->settBanRight();                   //Levanta la bandera para moverse a la izquierda
         perso->setPixmap(QPixmap(":/Imagenes/p2.png"));
         qDebug() << "right";
 
-    } else if (event->key() == Qt::Key_Space){
+    } else if (event->key() == Qt::Key_Space){  //Disparo
         proyectil * bala = new proyectil();
         perso->setPixmap(QPixmap(":/Imagenes/disparo.png"));
         bala->setPixmap(QPixmap(":/Imagenes/proyectil.png"));
-        bala->setPos(perso->x()+60,perso->y()+20);
+        bala->setPos(perso->x()+60,perso->y()+20); //Posicion del proyectil deacuerdo a la posicion del jugador
         scene->addItem(bala);
         qDebug() << "bullet";
     }
     else if(event->key()==Qt::Key_I){
-        perso->setBandera();
+        perso->setBandera(); //Activa la bandera para saltar
     }
 
     //___________personaje 2___________________________
@@ -149,6 +148,9 @@ void gameO::keyPressEvent(QKeyEvent *event)
             scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
             perso->setPos(15, 280);
             perso2->setPos(20, 280);
+            ramsey = new Ramsey;
+            ramsey->setPos(620,15);
+            scene->addItem(ramsey);
             TGame1->stop();
             TGame2->stop();
         }

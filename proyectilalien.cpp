@@ -21,10 +21,12 @@ void ProyectilAlien::move()
         }
     }
 
-    setPos(x(), y()+20);
-    if(y() >300 && y()<380) setPixmap(QPixmap(":/Imagenes/boom.png"));
-    else if (y() >= 380){
-        timer->stop();
+    if(y()<380) {
+        setPos(x(), y()+20);
+        if(y() >280 && y()<380) setPixmap(QPixmap(":/Imagenes/boom.png")); //Explota el huevo
+    }
+    if(y() >=340){
+        setPos(x(),y());
         gamme->scene->removeItem(this);
         delete this;
     }

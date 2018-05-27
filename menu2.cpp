@@ -52,5 +52,4 @@ void menu2::on_save_clicked()
 //    else {
 //        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
 //    }
-
 }

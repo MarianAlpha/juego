@@ -26,5 +26,15 @@
         <file>Imagenes/alien.png</file>
         <file>Imagenes/boom.png</file>
         <file>Imagenes/huevo.png</file>
+        <file>Imagenes/mini.png</file>
+        <file>Imagenes/mini1.png</file>
+        <file>Imagenes/HR1.png</file>
+        <file>Imagenes/HR2.png</file>
+        <file>Imagenes/HR3.png</file>
+        <file>Imagenes/HR4.png</file>
+        <file>Imagenes/HR5.png</file>
+        <file>Imagenes/HR6.png</file>
+        <file>Imagenes/HR7.png</file>
+        <file>Imagenes/HR8.png</file>
     </qresource>
 </RCC>

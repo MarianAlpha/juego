@@ -38,7 +38,8 @@ SOURCES += \
     proyectilejecutivo.cpp \
     proyectilalien.cpp \
     gameo.cpp \
-    ramsey.cpp
+    ramsey.cpp \
+    ataquer1.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -53,7 +54,8 @@ HEADERS += \
     proyectilejecutivo.h \
     proyectilalien.h \
     gameo.h \
-    ramsey.h
+    ramsey.h \
+    ataquer1.h
 
 FORMS += \
         mainwindow.ui \
