@@ -1,5 +1,6 @@
 #include "proyectil.h"
 #include <villano.h>
+#include "ramsey.h"
 
 proyectil::proyectil()
 {
@@ -19,7 +20,15 @@ void proyectil::move()
             bye++;
             return;
         }
+        else if (typeid(*(colliding_items[i])) == typeid(Ramsey)){
+            paloma++;
+            qDebug()<<"!!!!!!!!!!!";
+            scene()->removeItem(this);
+            delete this;
+            return;
+        }
     }
+
 
     setPos(x()+20, y());
     if (x() < 0){

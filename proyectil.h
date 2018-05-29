@@ -14,6 +14,7 @@ public:
     proyectil();
     QTimer *timer= new QTimer();
     int bye; //contador de malos
+    int paloma;
 public slots:
     void move();//proyectiles personajes
 };

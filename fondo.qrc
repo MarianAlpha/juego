@@ -10,7 +10,6 @@
         <file>Imagenes/p22.png</file>
         <file>Imagenes/disparo.png</file>
         <file>Imagenes/proyectil.png</file>
-        <file>sonido/fondolvl1.mp3</file>
         <file>Imagenes/malo.png</file>
         <file>Imagenes/pl11.png</file>
         <file>Imagenes/pl12.png</file>
@@ -36,5 +35,11 @@
         <file>Imagenes/HR6.png</file>
         <file>Imagenes/HR7.png</file>
         <file>Imagenes/HR8.png</file>
+        <file>Imagenes/trampa1.png</file>
+        <file>Imagenes/trampa2.png</file>
+        <file>Imagenes/trampa3.png</file>
+        <file>Imagenes/trampa4.png</file>
+        <file>Imagenes/trampa5.png</file>
+        <file>Imagenes/trampa6.png</file>
     </qresource>
 </RCC>

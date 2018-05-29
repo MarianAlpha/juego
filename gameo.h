@@ -43,17 +43,22 @@ public:
     QTimer *TGame2 = new QTimer();
     QTimer *TShoot = new QTimer();
     QTimer *timercambio = new QTimer();
+    QTimer *puntajes = new QTimer();
 
     //Class
     personaje * perso2;
     personaje *perso;
     Ramsey *ramsey;
+    proyectil * bala;
 
     //Metodos y atributos
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
     void setHeight(int w);
+    void limpiar();
+    void puntaje();
     int vidas=3,cont=0;
+    int p1=0, p2=0;
     int cambio=0;
     ~gameO();
 

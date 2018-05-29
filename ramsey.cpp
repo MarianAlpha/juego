@@ -23,8 +23,10 @@ void Ramsey::move()
         setPixmap(QPixmap(":/Imagenes/mini.png"));
         head=1;
     }
+    //else if(head)
     else if(head==1){
         setPixmap(QPixmap(":/Imagenes/mini1.png"));
+        head=0;
     }
 }
 

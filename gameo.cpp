@@ -6,7 +6,6 @@ gameO::gameO(QWidget *parent) :
     ui(new Ui::gameO)
 {
     ui->setupUi(this);
-    ui->pun->show();
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1000,400); //se agrega el tamaño de la escena y la coordenada inicial
     ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //Quita las barras laterales
@@ -29,8 +28,8 @@ gameO::gameO(QWidget *parent) :
         //scene->addItem(rect1);
 
         //musica de fondo
-        music->setMedia(QUrl("qrc:/sonido/fondolvl1.mp3"));
-        music->play();
+//        music->setMedia(QUrl("qrc:/sonido/fondolvl1.mp3"));
+//        music->play();
     }
     //player 1
     perso = new personaje();
@@ -45,17 +44,20 @@ gameO::gameO(QWidget *parent) :
     perso2->setPos(20,280);
     perso2->setHeight(HEIGHT);
     scene->addItem(perso2);
+    QObject::connect(puntajes, SIGNAL(timeout()),this,SLOT(puntaje()));
+    puntajes->start(1000);
 
     //Villanos y trampas
     QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));//Genera el Villano
     QObject::connect(TGame2, SIGNAL(timeout()),perso,SLOT(generar3()));//Genera el alien del lvl2
     QObject::connect(TGame1, SIGNAL(timeout()),perso,SLOT(generar2()));//Genera la trampa del lvl3
-    TGame->start(2500);
+    TGame->start(3500);
 
     //Timer saltos
     QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump())); //saltar player1
     QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump())); //saltar player2
     Tjump->start(45);
+    puntaje();
 }
 
 void gameO::keyPressEvent(QKeyEvent *event)
@@ -96,7 +98,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
         qDebug() << "right2";
 
     } else if (event->key() == Qt::Key_F){
-        proyectil * bala = new proyectil();
+        bala = new proyectil();
         bala->setPixmap(QPixmap(":/Imagenes/gato.png"));
         bala->setPos(perso2->x()+50,perso2->y()+10);
         scene->addItem(bala);
@@ -111,6 +113,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
         //_____________________NIVEL2__________________________________________________
         if(cont==1){
             TGame->stop();
+            //limpiar();
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
             scene->addItem(perso);
             scene->addItem(perso2);
@@ -153,6 +156,9 @@ void gameO::keyPressEvent(QKeyEvent *event)
             scene->addItem(ramsey);
             TGame1->stop();
             TGame2->stop();
+//            music->stop();
+            music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));
+            //if(bala->paloma==4) scene->removeItem(ramsey);
         }
     }
 }
@@ -180,6 +186,19 @@ void gameO::keyReleaseEvent(QKeyEvent *event)
         perso2->setPixmap(QPixmap(":/Imagenes/pl11.png"));
         qDebug() << "right 2 out";
     }
+}
+
+void gameO::limpiar()
+{
+    scene->clear();
+}
+
+void gameO::puntaje()
+{
+    p1=p1+10;
+    p2=p2+10;
+    ui->pun1->display(p1);
+    ui->pun2->display(p2);
 }
 
 

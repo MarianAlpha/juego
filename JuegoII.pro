@@ -6,11 +6,14 @@
 
 QT       += core gui
 QT       += core gui multimedia
+QT       += core gui serialport
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = JuegoII
 TEMPLATE = app
+
 
 # The following define makes your compiler emit warnings if you use
 # any feature of Qt which has been marked as deprecated (the exact warnings
@@ -39,7 +42,8 @@ SOURCES += \
     proyectilalien.cpp \
     gameo.cpp \
     ramsey.cpp \
-    ataquer1.cpp
+    ataquer1.cpp \
+    vidas.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -55,7 +59,8 @@ HEADERS += \
     proyectilalien.h \
     gameo.h \
     ramsey.h \
-    ataquer1.h
+    ataquer1.h \
+    vidas.h
 
 FORMS += \
         mainwindow.ui \

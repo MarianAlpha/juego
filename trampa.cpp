@@ -25,7 +25,37 @@ void trampa::move()
         }
     }
 
-    if(pos().x() > 0) setPos(x()-5,y()); // mover a la izquierda
+    if(pos().x() > 0){
+        setPos(x()-5,y());  // mover a la izquierda
+        if(cont==0){
+            setPixmap(QPixmap(":/Imagenes/trampa.png"));
+            cont=1;
+        }
+        else if(cont==1){
+            setPixmap(QPixmap(":/Imagenes/trampa1.png"));
+            cont=2;
+        }
+        else if(cont==2){
+            setPixmap(QPixmap(":/Imagenes/trampa2.png"));
+            cont=3;
+        }
+        else if(cont==3){
+            setPixmap(QPixmap(":/Imagenes/trampa3.png"));
+            cont=4;
+        }
+        else if(cont==4){
+            setPixmap(QPixmap(":/Imagenes/trampa4.png"));
+            cont=5;
+        }
+        else if(cont==5){
+            setPixmap(QPixmap(":/Imagenes/trampa5.png"));
+            cont=6;
+        }
+        else if(cont==6){
+            setPixmap(QPixmap(":/Imagenes/trampa6.png"));
+            cont=0;
+        }
+    }
     else setPos(x(),y());
     if(pos().x()<=0){
         scene()->removeItem(this);

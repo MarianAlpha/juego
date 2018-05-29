@@ -5,6 +5,8 @@
 #include <QGraphicsPixmapItem>
 #include <QTimer>
 #include <typeinfo>
+#include <QDebug>
+#include "vidas.h"
 #include "personaje.h"
 
 class proyectilEjecutivo : public QObject, public QGraphicsPixmapItem
@@ -12,7 +14,12 @@ class proyectilEjecutivo : public QObject, public QGraphicsPixmapItem
     Q_OBJECT
 public:
     proyectilEjecutivo();
-    QTimer *timer= new QTimer();
+    vidas *vid = new vidas();
+    QTimer *timer,*timerP= new QTimer();
+
+
+    void vidas1();
+    bool flag = false;
 public slots:
     void move();//proyectiles personajes
 };

@@ -16,7 +16,7 @@ villano::villano(QGraphicsItem *parent): QObject(), QGraphicsPixmapItem(parent)
     connect(pum, SIGNAL(timeout()),this,SLOT(shoot()));
 
     timer->start(50);
-    pum->start(1000);
+    pum->start(2000);
 }
 void villano::move()
 {

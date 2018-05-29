@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>sonido/boton.mp3</file>
+        <file>sonido/fondo.mp3</file>
+        <file>sonido/fondolvl1.mp3</file>
+        <file>sonido/menu1.mp3</file>
+        <file>sonido/menu2.mp3</file>
+    </qresource>
+</RCC>
