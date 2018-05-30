@@ -1,6 +1,9 @@
 #include "proyectil.h"
 #include <villano.h>
 #include "ramsey.h"
+#include  "gameo.h"
+
+extern gameO *gamme;
 
 proyectil::proyectil()
 {
@@ -15,6 +18,8 @@ void proyectil::move()
         if (typeid(*(colliding_items[i])) == typeid(villano)){
             scene()->removeItem(colliding_items[i]);
             scene()->removeItem(this);
+            gamme->p1+=100;
+            gamme->p2+=100;
             delete colliding_items[i];
             delete this;
             bye++;

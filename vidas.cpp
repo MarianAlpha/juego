@@ -2,11 +2,16 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDebug>
+#include "gameo.h"
+#include <QFont>
+#include "personaje.h"
+
+extern gameO *gamme;
 
 vidas::vidas(QObject *parent) : QObject(parent)
 {
     arduino_is_available = false;
-    arduino_port_name = "COM4";
+    arduino_port_name = "COM3";
     arduino = new QSerialPort;
     connect(tiempo,SIGNAL(timeout()),this,SLOT(vid()));
     tiempo->start(2000);
@@ -41,7 +46,7 @@ vidas::vidas(QObject *parent) : QObject(parent)
         // open and configure the serialport
         arduino->setPortName(arduino_port_name);
         arduino->open(QSerialPort::WriteOnly);
-        arduino->setBaudRate(QSerialPort::Baud9600);
+        arduino->setBaudRate(QSerialPort::Baud115200);
         arduino->setDataBits(QSerialPort::Data8);
         arduino->setParity(QSerialPort::NoParity);
         arduino->setStopBits(QSerialPort::OneStop);
@@ -49,9 +54,36 @@ vidas::vidas(QObject *parent) : QObject(parent)
     }
 }
 
+void vidas::decrece()
+{
+    vj1--;
+    qDebug()<<vj1;
+    if(vj1<=0 /*&& gamme->cont==0*/){
+        qDebug()<<"Game  Over";
+        gamme->scene->setBackgroundBrush(Qt::black);
+        gamme->scene->removeItem(gamme->perso);
+        gamme->scene->removeItem(gamme->perso2);
+        gamme->TGame->stop();
+        gamme->TGame1->stop();
+        gamme->TGame2->stop();
+        gamme->piu->stop();
+        gamme->shoot->stop();
+        gamme->musica->stop();
+        gamme->scene->clear();
+        over = new QGraphicsTextItem();
+        over->setPlainText(QString("GAME OVER"));
+        over->setPos(300, 100);
+        over->setDefaultTextColor(Qt::white);
+        over->setFont(QFont("Dead Kansas",50));
+        gamme->scene->addItem(over);
+        gamme->music->setMedia(QUrl("qrc:/sonido/GO.mp3"));
+        gamme->music->play();
+    }
+}
+
 void vidas::vid()
 {
-//   vj1--;
+  //vj1--;
     if(vj1==5){
         if(arduino->isWritable()){
             arduino->write("5");}}

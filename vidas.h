@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QSerialPort>
 #include <QTimer>
+#include <QGraphicsTextItem>
+#include <QMediaPlayer>
 
 class vidas : public QObject
 {
@@ -13,6 +15,9 @@ public:
 
     int vj1=5;
     QTimer *tiempo=new QTimer();
+    QMediaPlayer *play =new QMediaPlayer();
+    QGraphicsTextItem *over;
+    void decrece();
 
 private slots:
 

@@ -12,9 +12,11 @@
 #include "ramsey.h"
 #include "proyectil.h"
 #include <QGraphicsRectItem>
+#include <QGraphicsTextItem>
 #include <QGraphicsPixmapItem>
 #include <QWidget>
 #include "villano.h"
+#include "vidas.h"
 
 #define WIDTH 1000
 #define HEIGHT 400
@@ -30,7 +32,10 @@ class gameO : public QWidget
 public:
     explicit gameO(QWidget *parent = 0);
     //Media and pictures
-    QMediaPlayer *music=new QMediaPlayer();
+    QMediaPlayer *music = new QMediaPlayer();
+    QMediaPlayer *musica = new QMediaPlayer();
+    QMediaPlayer *shoot =new QMediaPlayer();
+    QMediaPlayer *piu = new QMediaPlayer();
     QGraphicsScene *scene;
     QGraphicsLineItem *fin;
     QGraphicsPixmapItem *rect = new QGraphicsPixmapItem();
@@ -47,9 +52,11 @@ public:
 
     //Class
     personaje * perso2;
+//    QGraphicsTextItem *over;
     personaje *perso;
     Ramsey *ramsey;
     proyectil * bala;
+    vidas *vid;
 
     //Metodos y atributos
     void keyPressEvent(QKeyEvent * event);
@@ -57,7 +64,7 @@ public:
     void setHeight(int w);
     void limpiar();
     void puntaje();
-    int vidas=3,cont=0;
+    int cont=0;
     int p1=0, p2=0;
     int cambio=0;
     ~gameO();

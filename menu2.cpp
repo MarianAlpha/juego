@@ -5,6 +5,8 @@
 #include "QString"
 #include <ctype.h>
 
+//gameO *gamme;
+
 menu2::menu2(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::menu2)
@@ -45,8 +47,8 @@ void menu2::on_save_clicked()
 
 
 //    if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
-//        game *gamee=new game();
-//        gamee->show();
+//        gamme =new gameO();
+//        gamme->show();
 //        close();
 //    }
 //    else {

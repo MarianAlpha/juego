@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QMediaPlayer>
 #include <QGraphicsScene>
+#include <villano.h>
 
 class personaje: public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
@@ -19,6 +20,7 @@ public:
     void setBandera();
     void resetBandera();
     int bandera=0,c=0;
+    villano * enemigo;
 
 private:
     QMediaPlayer *music=new QMediaPlayer();

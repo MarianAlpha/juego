@@ -89,7 +89,7 @@ void personaje::generar()
 {
     c++;
     if(c<4){
-        villano * enemigo = new villano();
+        enemigo = new villano();
         enemigo->setPos(WIDTH-100,HEIGHT-130);
         scene()->addItem(enemigo); //se coloca en la escena para que sea mostrada
     }

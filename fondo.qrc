@@ -41,5 +41,11 @@
         <file>Imagenes/trampa4.png</file>
         <file>Imagenes/trampa5.png</file>
         <file>Imagenes/trampa6.png</file>
+        <file>sonido/GO.mp3</file>
+        <file>sonido/Rasengan.mp3</file>
+        <file>sonido/piu.mp3</file>
+        <file>sonido/BossP.mp3</file>
+        <file>sonido/rifle.mp3</file>
+        <file>sonido/lvl.mp3</file>
     </qresource>
 </RCC>
