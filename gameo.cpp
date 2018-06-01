@@ -1,5 +1,12 @@
 #include "gameo.h"
 #include "ui_gameo.h"
+#include "menu2.h"
+#include <iostream>
+#include <QMessageBox>
+#include <fstream>
+
+extern menu2 *menu;
+using namespace std;
 
 gameO::gameO(QWidget *parent) :
     QWidget(parent),
@@ -204,7 +211,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
         //_____________________NIVEL FINAL__________________________________________________
         else if(cont==4){
             //limpia la escena, para los timers y elimina los punteros
-            music->stop();
+            musica->stop();
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
@@ -276,4 +283,15 @@ void gameO::puntaje()
 gameO::~gameO()
 {
     delete ui;
+}
+
+void gameO::on_save_clicked()
+{
+    ofstream save;
+    save.open(menu->b,ios::out);
+    save<<cont<<endl;
+    save<<p1<<endl;
+    save<<p2<<endl;
+    save.close();
+    QMessageBox::information(this, tr("Exito"), tr("Se ha guardado exitosamente."));
 }

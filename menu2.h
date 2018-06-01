@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMediaPlayer>
 #include <menu1.h>
+#include <iostream>
 #include <gameo.h>
 
 namespace Ui {
@@ -16,11 +17,11 @@ class menu2 : public QWidget
 
 public:
     explicit menu2(QWidget *parent = 0);
+    std::string b;
     ~menu2();
 
 private slots:
-    void on_return_2_clicked();
-
+    void on_return_2_clicked(); 
     void on_save_clicked();
 
 private:

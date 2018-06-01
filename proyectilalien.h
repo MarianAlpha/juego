@@ -13,6 +13,7 @@ class ProyectilAlien : public QObject, public QGraphicsPixmapItem
 public:
     ProyectilAlien();
     QTimer *timer= new QTimer();
+    QMediaPlayer *explo=new QMediaPlayer();
 public slots:
     void move();//proyectiles personajes
 };

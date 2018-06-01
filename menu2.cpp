@@ -5,6 +5,11 @@
 #include "QString"
 #include "comic.h"
 #include <ctype.h>
+#include "stdlib.h"
+#include <iostream>
+#include <fstream>
+
+using namespace std;
 
 menu2::menu2(QWidget *parent) :
     QWidget(parent),
@@ -46,6 +51,12 @@ void menu2::on_save_clicked()
 
 
     if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
+        QString a= ui->nick->text()+".txt";
+        b = a.toLocal8Bit().constData();
+        ofstream save;
+        save.open(b,ios::out);
+        if(save.fail()) cout<<"Nop";
+
         comic *gamme =new comic();
         gamme->show();
         close();

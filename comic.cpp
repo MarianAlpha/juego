@@ -3,7 +3,7 @@
 #include "funciones.h"
 #include "gameo.h"
 
-//gameO *gamme;
+gameO *gamme;
 
 comic::comic(QWidget *parent) :
     QWidget(parent),
@@ -30,9 +30,9 @@ void comic::on_pushButton_clicked()
     nextt++;
     if(nextt==1)  scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/comic2.png")));
     if(nextt==2)  scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/comic3.png")));
-//    if(nextt==3){
-//    gamme =new gameO();
-//    gamme->show();
-//    close();
-//    }
+    if(nextt==3){
+    gamme =new gameO();
+    gamme->show();
+    close();
+    }
 }

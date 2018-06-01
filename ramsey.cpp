@@ -13,6 +13,16 @@ Ramsey::Ramsey(QObject *parent) : QObject(parent)
     huevos->start(2000);
 }
 
+void Ramsey::win()
+{
+    vidaR--;
+    if(vidaR==10){
+        timer->stop();
+        huevos->stop();
+
+    }
+}
+
 void Ramsey::move()
 {
     if(cont==0) setPos(x(), y()+20);

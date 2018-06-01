@@ -27,7 +27,8 @@ void proyectil::move()
         }
         else if (typeid(*(colliding_items[i])) == typeid(Ramsey)){
             paloma++;
-            qDebug()<<"!!!!!!!!!!!";
+            gamme->ramsey->win();
+            qDebug()<<"!!!!!!!!!!!"<<gamme->ramsey->vidaR;
             scene()->removeItem(this);
             delete this;
             return;

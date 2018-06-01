@@ -69,6 +69,9 @@ public:
     int cambio=0;
     ~gameO();
 
+private slots:
+    void on_save_clicked();
+
 private:
     Ui::gameO *ui;
 };

@@ -17,6 +17,8 @@ public:
     QTimer *huevos = new QTimer();
     int cont=0;
     int head=0;
+    int vidaR=20;
+    void win();
 signals:
 
 public slots:

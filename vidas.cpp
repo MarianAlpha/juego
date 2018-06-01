@@ -58,7 +58,7 @@ void vidas::decrece()
 {
     vj1--;
     qDebug()<<vj1;
-    if(vj1<=0 /*&& gamme->cont==0*/){
+    if(vj1<=0){
         qDebug()<<"Game  Over";
         gamme->scene->setBackgroundBrush(Qt::black);
         gamme->scene->removeItem(gamme->perso);
@@ -83,7 +83,6 @@ void vidas::decrece()
 
 void vidas::vid()
 {
-  //vj1--;
     if(vj1==5){
         if(arduino->isWritable()){
             arduino->write("5");}}

@@ -47,5 +47,6 @@
         <file>sonido/BossP.mp3</file>
         <file>sonido/rifle.mp3</file>
         <file>sonido/lvl.mp3</file>
+        <file>sonido/explosion.mp3</file>
     </qresource>
 </RCC>

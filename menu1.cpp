@@ -3,6 +3,8 @@
 #include "ui_menu1.h"
 #include "funciones.h"
 
+menu2 *menu;
+
 menu1::menu1(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::menu1)
@@ -23,8 +25,8 @@ void menu1::on_newgame_clicked()
     player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
     player->play();
     delay(2);
-    menu2*menu1 = new menu2;
-    menu1->show();
+    menu = new menu2;
+    menu->show();
     close();
 }
 
