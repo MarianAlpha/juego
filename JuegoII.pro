@@ -43,7 +43,8 @@ SOURCES += \
     gameo.cpp \
     ramsey.cpp \
     ataquer1.cpp \
-    vidas.cpp
+    vidas.cpp \
+    comic.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -60,16 +61,19 @@ HEADERS += \
     gameo.h \
     ramsey.h \
     ataquer1.h \
-    vidas.h
+    vidas.h \
+    comic.h
 
 FORMS += \
         mainwindow.ui \
     menu1.ui \
     menu2.ui \
-    gameo.ui
+    gameo.ui \
+    comic.ui
 
 RESOURCES += \
     gif.qrc \
-    fondo.qrc
+    fondo.qrc \
+    comic.qrc
 
 DISTFILES +=

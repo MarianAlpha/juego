@@ -122,12 +122,13 @@ void gameO::keyPressEvent(QKeyEvent *event)
     if(perso->pos().x()>800 && perso2->pos().x()>800) {
         cont++;
         //_____________________NIVEL2__________________________________________________
-        if(cont==1 && vid->vj1!=0){
+        if(cont==1){
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
-
-            //limpiar();
+            scene->removeItem(perso);
+            scene->removeItem(perso2);
+            scene->clear();
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
             scene->addItem(perso);
             scene->addItem(perso2);
@@ -145,32 +146,89 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame2->start(2800);
         }
         //_____________________NIVEL3__________________________________________________
-        else if(cont==2 && vid->vj1!=0){
-            //scene->clear();
+        else if(cont==2){
+            //limpia la escena, para los timers y elimina los punteros
+            TGame->stop();
+            TGame1->stop();
+            TGame2->stop();
+            scene->removeItem(perso);
+            scene->removeItem(perso2);
+            scene->clear(); //limpia la escene
+
+            //Crea la escena y los personajes
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
+            scene->addItem(perso);
+            scene->addItem(perso2);
+
+            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+            perso->setHeight(HEIGHT);
+
+            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+            perso2->setHeight(HEIGHT);
+            perso2->setPos(20,280);
             perso->setPos(15, 280);
-            perso2->setPos(20, 280);
             perso->c=0;
-            TGame1->start(2500);
+
+            TGame->start(2500);
+            TGame1->start(2600);
+            TGame2->start(2800);
         }
         //_____________________NIVEL4__________________________________________________
-        else if(cont==3 && vid->vj1!=0){
+        else if(cont==3){
+            //limpia la escena, para los timers y elimina los punteros
+            TGame->stop();
+            TGame1->stop();
+            TGame2->stop();
+            scene->removeItem(perso);
+            scene->removeItem(perso2);
+            scene->clear(); //limpia la escene
+
+            //Crea la escena y los personajes
             scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
+            scene->addItem(perso);
+            scene->addItem(perso2);
+
+            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+            perso->setHeight(HEIGHT);
+
+            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+            perso2->setHeight(HEIGHT);
+            perso2->setPos(20,280);
             perso->setPos(15, 280);
-            perso2->setPos(20, 280);
             perso->c=0;
+
+            TGame->start(2500);
+            TGame1->start(2600);
+            TGame2->start(2800);
         }
         //_____________________NIVEL FINAL__________________________________________________
-        else if(cont==4 && vid->vj1!=0){
+        else if(cont==4){
+            //limpia la escena, para los timers y elimina los punteros
             music->stop();
+            TGame->stop();
+            TGame1->stop();
+            TGame2->stop();
+            scene->removeItem(perso);
+            scene->removeItem(perso2);
+            scene->clear(); //limpia la escene
+
+            //Crea la escena y los personajes
             scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
+            scene->addItem(perso);
+            scene->addItem(perso2);
+
+            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+            perso->setHeight(HEIGHT);
+
+            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+            perso2->setHeight(HEIGHT);
+            perso2->setPos(20,280);
             perso->setPos(15, 280);
-            perso2->setPos(20, 280);
+
+            //crea el jefe final
             ramsey = new Ramsey;
             ramsey->setPos(620,15);
             scene->addItem(ramsey);
-            TGame1->stop();
-            TGame2->stop();
             music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));
             music->play();
         }

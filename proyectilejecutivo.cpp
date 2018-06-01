@@ -18,7 +18,7 @@ void proyectilEjecutivo::move()
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; i++ ){
         if (typeid(*(colliding_items[i])) == typeid(personaje)){
-            gamme->vid->decrece();
+                gamme->vid->decrece();
             gamme->scene->removeItem(this);
             return;
         }

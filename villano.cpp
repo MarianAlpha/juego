@@ -29,7 +29,7 @@ void villano::shoot()
 {
     proyectilEjecutivo * bala = new proyectilEjecutivo();
     setPixmap(QPixmap(":/Imagenes/malo1.png"));
-    bala->setPos(this->x(),this->y());
+    bala->setPos(this->x()-20,this->y()+20);
     scene()->addItem(bala);
 }
 

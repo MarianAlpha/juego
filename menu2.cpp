@@ -3,9 +3,8 @@
 #include "funciones.h"
 #include <QMessageBox>
 #include "QString"
+#include "comic.h"
 #include <ctype.h>
-
-//gameO *gamme;
 
 menu2::menu2(QWidget *parent) :
     QWidget(parent),
@@ -46,12 +45,12 @@ void menu2::on_save_clicked()
     respuesta3=respuesta3.toLower();
 
 
-//    if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
-//        gamme =new gameO();
-//        gamme->show();
-//        close();
-//    }
-//    else {
-//        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
-//    }
+    if(respuesta1=="link" && respuesta2=="kratos" && respuesta3=="pacman"){
+        comic *gamme =new comic();
+        gamme->show();
+        close();
+    }
+    else {
+        QMessageBox::information(this, tr("Error"), tr("Incorrecto").arg(respuesta1));
+    }
 }
