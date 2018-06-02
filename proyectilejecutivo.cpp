@@ -6,7 +6,7 @@ extern gameO *gamme;
 
 proyectilEjecutivo::proyectilEjecutivo()
 {
-    setPixmap(QPixmap(":/Imagenes/gato.png"));
+    setPixmap(QPixmap(":/Imagenes/maiz.png"));
     connect(timer,SIGNAL(timeout()),this, SLOT(move()));
     timer->start(50);
 

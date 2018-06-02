@@ -19,7 +19,6 @@ void Ramsey::win()
     if(vidaR==10){
         timer->stop();
         huevos->stop();
-
     }
 }
 

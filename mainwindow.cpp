@@ -5,7 +5,7 @@
 #include <QMovie>
 #include <gameo.h>
 
-//gameO *gamme;
+gameO *gamme;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -33,12 +33,12 @@ void MainWindow::on_Start_clicked()
     player->play();
     delay(2);
 
-    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
-    MainWindow->show();
-    close();
-//    gamme =new gameO();
-//    gamme->show();
+//    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
+//    MainWindow->show();
 //    close();
+    gamme =new gameO();
+    gamme->show();
+    close();
 
 }
 void MainWindow::on_quitgame_clicked()

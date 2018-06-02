@@ -10,12 +10,10 @@
         <file>Imagenes/p22.png</file>
         <file>Imagenes/disparo.png</file>
         <file>Imagenes/proyectil.png</file>
-        <file>Imagenes/malo.png</file>
         <file>Imagenes/pl11.png</file>
         <file>Imagenes/pl12.png</file>
         <file>Imagenes/pl22.png</file>
         <file>Imagenes/pl23.png</file>
-        <file>Imagenes/malo1.png</file>
         <file>Imagenes/gato.png</file>
         <file>Imagenes/lvl5.gif</file>
         <file>Imagenes/lvl2.png</file>
@@ -48,5 +46,22 @@
         <file>sonido/rifle.mp3</file>
         <file>sonido/lvl.mp3</file>
         <file>sonido/explosion.mp3</file>
+        <file>Imagenes/paloma1.png</file>
+        <file>Imagenes/paloma2.png</file>
+        <file>Imagenes/paloma3.png</file>
+        <file>Imagenes/paloma4.png</file>
+        <file>Imagenes/paloma5.png</file>
+        <file>Imagenes/paloma6.png</file>
+        <file>Imagenes/paloma7.png</file>
+        <file>Imagenes/paloma8.png</file>
+        <file>Imagenes/paloma9.png</file>
+        <file>Imagenes/mallo1.png</file>
+        <file>Imagenes/mallo2.png</file>
+        <file>Imagenes/mallo3.png</file>
+        <file>Imagenes/mallo4.png</file>
+        <file>Imagenes/mallo5.png</file>
+        <file>Imagenes/mallo6.png</file>
+        <file>Imagenes/pan.png</file>
+        <file>Imagenes/maiz.png</file>
     </qresource>
 </RCC>

@@ -179,9 +179,8 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame->start(2500);
             TGame1->start(2600);
             TGame2->start(2800);
-        }
         //_____________________NIVEL4__________________________________________________
-        else if(cont==3){
+        }else if(cont==3){
             //limpia la escena, para los timers y elimina los punteros
             TGame->stop();
             TGame1->stop();
@@ -293,5 +292,4 @@ void gameO::on_save_clicked()
     save<<p1<<endl;
     save<<p2<<endl;
     save.close();
-    QMessageBox::information(this, tr("Exito"), tr("Se ha guardado exitosamente."));
 }

@@ -1,4 +1,5 @@
 #include "menu1.h"
+#include "load.h"
 #include "mainwindow.h"
 #include "ui_menu1.h"
 #include "funciones.h"
@@ -34,6 +35,10 @@ void menu1::on_loadgame_clicked()
 {
     player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
     player->play();
+    load *loadd = new load();
+    loadd->show();
+    close();
+
 }
 
 void menu1::on_return_3_clicked()
