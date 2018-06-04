@@ -49,7 +49,7 @@ void villano::move()
 void villano::shoot()
 {
     proyectilEjecutivo * bala = new proyectilEjecutivo();
-    bala->setPos(this->x()-20,this->y()+20);
+    bala->setPos(this->x()-20,this->y()+25);
     scene()->addItem(bala);
 }
 

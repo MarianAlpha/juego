@@ -23,11 +23,10 @@ gameO::gameO(QWidget *parent) :
         scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Imagen nivel 1
         ui->view->setScene(scene); // colocar la escena que se desea visualizar
 
-
         //ladrillo
         rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
-        rect->setPos(400,140);
-        //scene->addItem(rect);
+        rect->setPos(400,220);
+        scene->addItem(rect);
 
         //barricada
         rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
@@ -38,6 +37,7 @@ gameO::gameO(QWidget *parent) :
         musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));
         musica->play();
     }
+
     //player 1
     perso = new personaje();
     perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
@@ -64,7 +64,8 @@ gameO::gameO(QWidget *parent) :
     Tjump->start(45);
 
     //Vidas y puntaje
-    vid = new vidas();
+    vid1 = new vidas();
+    vid2 = new vidas();
 //    over = new QGraphicsTextItem();
 //    over->setPlainText(QString(""));
 //    over->setPos(300, 100);
@@ -126,6 +127,11 @@ void gameO::keyPressEvent(QKeyEvent *event)
     else if(event->key()==Qt::Key_W){
         perso2->setBandera();
     }
+    if(perso->collidesWithItem(rect)){
+        Tjump->stop();
+        perso->setPos(perso->x()+50,rect->y()-100);
+    }
+
     if(perso->pos().x()>800 && perso2->pos().x()>800) {
         cont++;
         //_____________________NIVEL2__________________________________________________
@@ -133,6 +139,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
+            scene->removeItem(rect);
             scene->removeItem(perso);
             scene->removeItem(perso2);
             scene->clear();
@@ -158,6 +165,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
+            scene->removeItem(rect);
             scene->removeItem(perso);
             scene->removeItem(perso2);
             scene->clear(); //limpia la escene
@@ -185,6 +193,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
+            scene->removeItem(rect);
             scene->removeItem(perso);
             scene->removeItem(perso2);
             scene->clear(); //limpia la escene
@@ -214,6 +223,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
             TGame->stop();
             TGame1->stop();
             TGame2->stop();
+            scene->removeItem(rect);
             scene->removeItem(perso);
             scene->removeItem(perso2);
             scene->clear(); //limpia la escene

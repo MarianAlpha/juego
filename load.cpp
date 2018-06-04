@@ -2,7 +2,7 @@
 #include "ui_load.h"
 #include "menu1.h"
 #include <iostream>
-#include <Vector>
+#include <QMessageBox>
 #include <fstream>
 
 using namespace std;
@@ -38,12 +38,19 @@ void load::on_ok_clicked()
     ifstream load;
     load.open(b,ios::in); // abrimos el archivo en modo lectura
     if(load.fail()){
-        cout<<"No se puedo abrir el archivo";
+        QMessageBox::information(this, tr("Error"), tr("Nombre de usuario Incorrecto"));
     }
     else{
         while(!load.eof()){
             getline(load, var);
             ent = atoi(var.c_str());
+            lis.push_back(ent);
         }
+        gamme->load=1;
+        gamme->cont=lis[0];
+        gamme->p1=lis[1];
+        gamme->p2=lis[2];
+        gamme->show();
+        close();
     }
 }

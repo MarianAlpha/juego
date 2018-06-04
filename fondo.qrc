@@ -63,5 +63,7 @@
         <file>Imagenes/mallo6.png</file>
         <file>Imagenes/pan.png</file>
         <file>Imagenes/maiz.png</file>
+        <file>Imagenes/malo1.png</file>
+        <file>Imagenes/malo.png</file>
     </qresource>
 </RCC>

@@ -31,6 +31,7 @@ class gameO : public QWidget
 
 public:
     explicit gameO(QWidget *parent = 0);
+
     //Media and pictures
     QMediaPlayer *music = new QMediaPlayer();
     QMediaPlayer *musica = new QMediaPlayer();
@@ -56,7 +57,8 @@ public:
     personaje *perso;
     Ramsey *ramsey;
     proyectil * bala;
-    vidas *vid;
+    vidas *vid1;
+    vidas *vid2;
 
     //Metodos y atributos
     void keyPressEvent(QKeyEvent * event);
@@ -64,7 +66,7 @@ public:
     void setHeight(int w);
     void limpiar();
     void puntaje();
-    int cont=0;
+    int cont=0,load=0;
     int p1=0, p2=0;
     int cambio=0;
     ~gameO();

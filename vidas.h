@@ -14,10 +14,13 @@ public:
     explicit vidas(QObject *parent = nullptr);
 
     int vj1=5;
+    int vj2=5;
     QTimer *tiempo=new QTimer();
     QMediaPlayer *play =new QMediaPlayer();
     QGraphicsTextItem *over;
-    void decrece();
+    void decrece1();
+    void decrece2();
+    void GameOver();
 
 private slots:
 

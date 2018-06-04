@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <iostream>
+#include <Vector>
 
 namespace Ui {
 class load;
