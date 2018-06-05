@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <iostream>
 #include <Vector>
+#include <QMediaPlayer>
+#include "menu1.h"
 
 namespace Ui {
 class load;
@@ -17,6 +19,11 @@ public:
     explicit load(QWidget *parent = 0);
     ~load();
     std::string b;
+    int nivel=0, pp1=0,pp2=0;
+    int cont=0;
+    int flag=0;
+    QMediaPlayer *player;
+    void cargar();
 
 private slots:
     void on_back_clicked();

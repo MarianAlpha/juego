@@ -3,5 +3,8 @@
         <file>Imagenes/perso.gif</file>
         <file>Imagenes/fondo.jpg</file>
         <file>Imagenes/fondo.png</file>
+        <file>sonido/fondo.mp3</file>
+        <file>sonido/menu1.mp3</file>
+        <file>sonido/menu2.mp3</file>
     </qresource>
 </RCC>

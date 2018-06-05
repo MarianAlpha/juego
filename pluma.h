@@ -1,5 +1,5 @@
-#ifndef ATAQUER1_H
-#define ATAQUER1_H
+#ifndef PLUMA_H
+#define PLUMA_H
 
 #include <QObject>
 #include <QGraphicsPixmapItem>
@@ -9,12 +9,12 @@
 #include <typeinfo>
 #include "QTimer"
 
-class AtaqueR1 : public QObject, public QGraphicsPixmapItem
+class pluma : public QObject, public QGraphicsPixmapItem
 {
     Q_OBJECT
 public:
-    explicit AtaqueR1(QObject *parent = nullptr);
-    QTimer *vel = new QTimer();
+    explicit pluma(QObject *parent = nullptr);
+    QTimer *plum = new QTimer();
     int mover=0;
 signals:
 
@@ -22,4 +22,4 @@ public slots:
     void move();
 };
 
-#endif // ATAQUER1_H
+#endif // PLUMA_H

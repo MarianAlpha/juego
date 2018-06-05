@@ -46,7 +46,7 @@ vidas::vidas(QObject *parent) : QObject(parent)
         // open and configure the serialport
         arduino->setPortName(arduino_port_name);
         arduino->open(QSerialPort::WriteOnly);
-        arduino->setBaudRate(QSerialPort::Baud19200);
+        arduino->setBaudRate(QSerialPort::Baud115200);
         arduino->setDataBits(QSerialPort::Data8);
         arduino->setParity(QSerialPort::NoParity);
         arduino->setStopBits(QSerialPort::OneStop);
@@ -58,7 +58,10 @@ void vidas::decrece2()
 {
     vj2--;
     qDebug()<<vj2;
-//    if(vj2<=0) GameOver();
+    if(vj2<=0){
+        vj1=1;
+        decrece1();
+    };
 }
 
 void vidas::GameOver()
@@ -93,10 +96,10 @@ void vidas::decrece1()
 
 void vidas::vid()
 {
-    QString valor = QString::number(vj1);
+    int vidT=(vj1*10)+vj2;
+    QString valor = QString::number(vidT);
     if(arduino->isWritable()){
-        arduino->write(valor.toStdString().c_str());
-    }
+        arduino->write(valor.toStdString().c_str());    }
 //    if(vj1==5){
 //        if(arduino->isWritable()){
 //            arduino->write("5");}}

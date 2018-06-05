@@ -45,7 +45,8 @@ SOURCES += \
     ataquer1.cpp \
     vidas.cpp \
     comic.cpp \
-    load.cpp
+    load.cpp \
+    pluma.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -64,7 +65,8 @@ HEADERS += \
     ataquer1.h \
     vidas.h \
     comic.h \
-    load.h
+    load.h \
+    pluma.h
 
 FORMS += \
         mainwindow.ui \

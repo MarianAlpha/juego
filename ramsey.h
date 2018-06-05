@@ -14,16 +14,20 @@ class Ramsey : public QObject, public QGraphicsPixmapItem
 public:
     explicit Ramsey(QObject *parent = nullptr);
     QTimer * timer = new QTimer();
+    QTimer * plumas = new QTimer();
     QTimer *huevos = new QTimer();
-    int cont=0;
+    int cont=0,cont1=0;
+    int numplumas=0;
+    int flag=0;
     int head=0;
-    int vidaR=20;
+    int vidaR=100;
     void win();
 signals:
 
 public slots:
     void move();
     void huevo();
+    void pluma1();
 };
 
 #endif // RAMSEY_H

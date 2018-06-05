@@ -4,8 +4,9 @@
 #include <QLabel>
 #include <QMovie>
 #include <gameo.h>
+#include "load.h"
 
-gameO *gamme;
+//gameO *gamme;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -13,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     player =new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/fondo.mp3")); //Reproducir la musica de fondo
+    player->setMedia(QUrl("qrc:/sonido/fondo.mp3")); //Reproducir la musica de fondo
     player->play();
 
     QMovie *movie = new QMovie("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/Imagenes/perso.gif"); //Reproducir el gif
@@ -28,17 +29,15 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_Start_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3")); //Sonido boton
-    //player->setMedia(QUrl("qrc:/sonido/boton.mp3"));
+    player->setMedia(QUrl("qrc:/sonido/boton.mp3"));//Sonido boton
     player->play();
-    delay(2);
 
-//    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
-//    MainWindow->show();
-//    close();
-    gamme =new gameO();
-    gamme->show();
+    menu1*MainWindow = new menu1; //pasar de mainwindow a menu1
+    MainWindow->show();
     close();
+//    gamme =new gameO();
+//    gamme->show();
+//    close();
 
 }
 void MainWindow::on_quitgame_clicked()

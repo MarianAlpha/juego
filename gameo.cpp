@@ -3,7 +3,9 @@
 #include "menu2.h"
 #include <iostream>
 #include <QMessageBox>
+#include "load.h"
 #include <fstream>
+#define RUTA_ARCHIVO "guardar.txt"
 
 extern menu2 *menu;
 using namespace std;
@@ -13,25 +15,37 @@ gameO::gameO(QWidget *parent) :
     ui(new Ui::gameO)
 {
     ui->setupUi(this);
+
+    QString info;
+    string var;//String para leer los datos del archivo
+    int ent,contt=0;
+
+    QFile file(RUTA_ARCHIVO);           //Objeto para manejar la lectura del archivo
+    file.open(QIODevice::ReadOnly);     //Abre el archiv en modo lectura
+    info=file.readLine();
+
+//    QFile file2(info);           //Objeto para manejar la lectura del archivo
+//    file2.open(QIODevice::ReadOnly);     //Abre el archiv en modo lectura
+
+//    while(!file2.eof()){
+//        var=file.readLine();
+//        ent = atoi(var.c_str());
+//        if(contt==0) cont=ent;
+//        else if(contt==1) p1=ent;
+//        else if(contt==2) p2=ent;
+//        contt++;
+//    }
+
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1000,400); //se agrega el tamaño de la escena y la coordenada inicial
     ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //Quita las barras laterales
     ui->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setFixedSize(WIDTH,HEIGHT);
-
+    ui->view->setScene(scene); // colocar la escena que se desea visualizar
+    qDebug()<<cont<<" "<<p1<<" "<<p2<<"DDDD";
+    niveles();
     if(cont==0){
         scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Imagen nivel 1
-        ui->view->setScene(scene); // colocar la escena que se desea visualizar
-
-        //ladrillo
-        rect->setPixmap(QPixmap(":/Imagenes/ladrillo.jpg"));
-        rect->setPos(400,220);
-        scene->addItem(rect);
-
-        //barricada
-        rect1->setPixmap(QPixmap(":/Imagenes/barricada.png"));
-        rect1->setPos(580,280);
-        //scene->addItem(rect1);
 
         //musica de fondo
         musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));
@@ -88,13 +102,13 @@ void gameO::keyPressEvent(QKeyEvent *event)
         qDebug() << "right";
 
     } else if (event->key() == Qt::Key_Space){  //Disparo
-        proyectil * bala = new proyectil();
+        proyectil * bala1 = new proyectil();
         perso->setPixmap(QPixmap(":/Imagenes/disparo.png"));
-        bala->setPixmap(QPixmap(":/Imagenes/proyectil.png"));
+        bala1->setPixmap(QPixmap(":/Imagenes/proyectil.png"));
         shoot->setMedia(QUrl("qrc:/sonido/Rasengan.mp3"));
         shoot->play();
-        bala->setPos(perso->x()+60,perso->y()+20); //Posicion del proyectil deacuerdo a la posicion del jugador
-        scene->addItem(bala);
+        bala1->setPos(perso->x()+60,perso->y()+20); //Posicion del proyectil deacuerdo a la posicion del jugador
+        scene->addItem(bala1);
         qDebug() << "bullet";
     }
     else if(event->key()==Qt::Key_I){
@@ -127,127 +141,17 @@ void gameO::keyPressEvent(QKeyEvent *event)
     else if(event->key()==Qt::Key_W){
         perso2->setBandera();
     }
-    if(perso->collidesWithItem(rect)){
-        Tjump->stop();
-        perso->setPos(perso->x()+50,rect->y()-100);
+
+    if(vid1->vj1<=0){
+        piu->stop();
+        shoot->stop();
+        scene->removeItem(bala);
     }
 
+    else flag=0;
     if(perso->pos().x()>800 && perso2->pos().x()>800) {
         cont++;
-        //_____________________NIVEL2__________________________________________________
-        if(cont==1){
-            TGame->stop();
-            TGame1->stop();
-            TGame2->stop();
-            scene->removeItem(rect);
-            scene->removeItem(perso);
-            scene->removeItem(perso2);
-            scene->clear();
-            scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
-            scene->addItem(perso);
-            scene->addItem(perso2);
-
-            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-            perso->setHeight(HEIGHT);
-
-            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-            perso2->setHeight(HEIGHT);
-            perso2->setPos(20,280);
-            perso->setPos(15, 280);
-            perso->c=0;
-
-            TGame->start(2500);
-            TGame2->start(2800);
-        }
-        //_____________________NIVEL3__________________________________________________
-        else if(cont==2){
-            //limpia la escena, para los timers y elimina los punteros
-            TGame->stop();
-            TGame1->stop();
-            TGame2->stop();
-            scene->removeItem(rect);
-            scene->removeItem(perso);
-            scene->removeItem(perso2);
-            scene->clear(); //limpia la escene
-
-            //Crea la escena y los personajes
-            scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
-            scene->addItem(perso);
-            scene->addItem(perso2);
-
-            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-            perso->setHeight(HEIGHT);
-
-            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-            perso2->setHeight(HEIGHT);
-            perso2->setPos(20,280);
-            perso->setPos(15, 280);
-            perso->c=0;
-
-            TGame->start(2500);
-            TGame1->start(2600);
-            TGame2->start(2800);
-        //_____________________NIVEL4__________________________________________________
-        }else if(cont==3){
-            //limpia la escena, para los timers y elimina los punteros
-            TGame->stop();
-            TGame1->stop();
-            TGame2->stop();
-            scene->removeItem(rect);
-            scene->removeItem(perso);
-            scene->removeItem(perso2);
-            scene->clear(); //limpia la escene
-
-            //Crea la escena y los personajes
-            scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
-            scene->addItem(perso);
-            scene->addItem(perso2);
-
-            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-            perso->setHeight(HEIGHT);
-
-            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-            perso2->setHeight(HEIGHT);
-            perso2->setPos(20,280);
-            perso->setPos(15, 280);
-            perso->c=0;
-
-            TGame->start(2500);
-            TGame1->start(2600);
-            TGame2->start(2800);
-        }
-        //_____________________NIVEL FINAL__________________________________________________
-        else if(cont==4){
-            //limpia la escena, para los timers y elimina los punteros
-            musica->stop();
-            TGame->stop();
-            TGame1->stop();
-            TGame2->stop();
-            scene->removeItem(rect);
-            scene->removeItem(perso);
-            scene->removeItem(perso2);
-            scene->clear(); //limpia la escene
-
-            //Crea la escena y los personajes
-            scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
-            scene->addItem(perso);
-            scene->addItem(perso2);
-
-            perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-            perso->setHeight(HEIGHT);
-
-            perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-            perso2->setHeight(HEIGHT);
-            perso2->setPos(20,280);
-            perso->setPos(15, 280);
-
-            //crea el jefe final
-            ramsey = new Ramsey;
-            ramsey->setPos(620,15);
-            scene->addItem(ramsey);
-            music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));
-            music->play();
-        }
+        niveles();
     }
 }
 
@@ -276,17 +180,153 @@ void gameO::keyReleaseEvent(QKeyEvent *event)
     }
 }
 
-void gameO::limpiar()
-{
-    scene->clear();
-}
-
 void gameO::puntaje()
 {
     p1+=10;
     p2+=10;
     ui->pun1->display(p1);
     ui->pun2->display(p2);
+}
+
+void gameO::cargar()
+{
+    string var; //nombre del archivo donde se guardan los nombres de las sesiones
+    string datos;
+    int ent,contt=0;
+
+    ifstream loa;
+    loa.open("guardar.txt",ios::in);
+    getline(loa, var);
+
+    ifstream cargar;
+    cargar.open(var,ios::in);
+    while(!cargar.eof()){
+        getline(cargar, datos);
+        ent = atoi(var.c_str());
+        if(contt==0) cont=ent;
+        else if(contt==1) p1=ent;
+        else if(contt==2) p2=ent;
+        contt++;
+    }
+}
+
+void gameO::niveles()
+{
+    //_____________________NIVEL2__________________________________________________
+    if(cont==1){
+        TGame->stop();
+        TGame1->stop();
+        TGame2->stop();
+        scene->removeItem(rect);
+        scene->removeItem(perso);
+        scene->removeItem(perso2);
+        scene->clear();
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
+        scene->addItem(perso);
+        scene->addItem(perso2);
+
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+        perso->setHeight(HEIGHT);
+
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+        perso2->setHeight(HEIGHT);
+        perso2->setPos(20,280);
+        perso->setPos(15, 280);
+        perso->c=0;
+
+        TGame->start(2500);
+        TGame2->start(2800);
+    }
+    //_____________________NIVEL3__________________________________________________
+    else if(cont==2){
+        //limpia la escena, para los timers y elimina los punteros
+        TGame->stop();
+        TGame1->stop();
+        TGame2->stop();
+        scene->removeItem(rect);
+        scene->removeItem(perso);
+        scene->removeItem(perso2);
+        scene->clear(); //limpia la escene
+
+        //Crea la escena y los personajes
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
+        scene->addItem(perso);
+        scene->addItem(perso2);
+
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+        perso->setHeight(HEIGHT);
+
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+        perso2->setHeight(HEIGHT);
+        perso2->setPos(20,280);
+        perso->setPos(15, 280);
+        perso->c=0;
+
+        TGame->start(2500);
+        TGame1->start(2600);
+        TGame2->start(2800);
+
+    //_____________________NIVEL4__________________________________________________
+    }else if(cont==3){
+        //limpia la escena, para los timers y elimina los punteros
+        TGame->stop();
+        TGame1->stop();
+        TGame2->stop();
+        scene->removeItem(rect);
+        scene->removeItem(perso);
+        scene->removeItem(perso2);
+        scene->clear(); //limpia la escene
+
+        //Crea la escena y los personajes
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
+        scene->addItem(perso);
+        scene->addItem(perso2);
+
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+        perso->setHeight(HEIGHT);
+
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+        perso2->setHeight(HEIGHT);
+        perso2->setPos(20,280);
+        perso->setPos(15, 280);
+        perso->c=0;
+
+        TGame->start(2500);
+        TGame1->start(2600);
+        TGame2->start(2800);
+    }
+    //_____________________NIVEL FINAL__________________________________________________
+    else if(cont==4){
+        //limpia la escena, para los timers y elimina los punteros
+        musica->stop();
+        TGame->stop();
+        TGame1->stop();
+        TGame2->stop();
+        scene->removeItem(rect);
+        scene->removeItem(perso);
+        scene->removeItem(perso2);
+        scene->clear(); //limpia la escene
+
+        //Crea la escena y los personajes
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
+        scene->addItem(perso);
+        scene->addItem(perso2);
+
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
+        perso->setHeight(HEIGHT);
+
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
+        perso2->setHeight(HEIGHT);
+        perso2->setPos(20,280);
+        perso->setPos(15, 280);
+
+        //crea el jefe final
+        ramsey = new Ramsey;
+        ramsey->setPos(620,15);
+        scene->addItem(ramsey);
+        music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));
+        music->play();
+    }
 }
 
 gameO::~gameO()
@@ -303,3 +343,4 @@ void gameO::on_save_clicked()
     save<<p2<<endl;
     save.close();
 }
+

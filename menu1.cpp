@@ -12,7 +12,7 @@ menu1::menu1(QWidget *parent) :
 {
     ui->setupUi(this);
     player =new QMediaPlayer(this);
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/menu1.mp3"));
+    player->setMedia(QUrl("qrc:/sonido/menu1.mp3"));
     player->play();
 }
 
@@ -23,9 +23,8 @@ menu1::~menu1()
 
 void menu1::on_newgame_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
+    player->setMedia(QUrl("qrc:/sonido/boton.mp3"));
     player->play();
-    delay(2);
     menu = new menu2;
     menu->show();
     close();
@@ -33,7 +32,7 @@ void menu1::on_newgame_clicked()
 
 void menu1::on_loadgame_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
+    player->setMedia(QUrl("qrc:/sonido/boton.mp3"));
     player->play();
     load *loadd = new load();
     loadd->show();
@@ -43,7 +42,7 @@ void menu1::on_loadgame_clicked()
 
 void menu1::on_return_3_clicked()
 {
-    player->setMedia(QUrl::fromLocalFile("C:/Users/LENOVO/Documents/Tareas/InfoII/JuegoII/sonido/boton.mp3"));
+    player->setMedia(QUrl("qrc:/sonido/boton.mp3"));
     player->play();
     delay(2);
     MainWindow*menu1 = new MainWindow;

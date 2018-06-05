@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QGraphicsPixmapItem>
 #include <QGraphicsView>
+#include <QMediaPlayer>
 
 namespace Ui {
 class comic;
@@ -18,6 +19,7 @@ public:
     explicit comic(QWidget *parent = 0);
     QGraphicsScene *scene;
     int nextt=0;
+    QMediaPlayer *player;
     ~comic();
 
 private slots:

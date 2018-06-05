@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QImage>
 #include <QMediaPlayer>
+#include <QFile>
 #include <personaje.h>
 #include <QKeyEvent>
 #include "ramsey.h"
@@ -48,6 +49,7 @@ public:
     QTimer *TGame1 = new QTimer();
     QTimer *TGame2 = new QTimer();
     QTimer *TShoot = new QTimer();
+    QTimer *Tcaer = new QTimer();
     QTimer *timercambio = new QTimer();
     QTimer *puntajes = new QTimer();
 
@@ -64,11 +66,13 @@ public:
     void keyPressEvent(QKeyEvent * event);
     void keyReleaseEvent(QKeyEvent * event);
     void setHeight(int w);
-    void limpiar();
     void puntaje();
-    int cont=0,load=0;
+    void cargar();
+    void niveles();
+    int cont=0;
     int p1=0, p2=0;
     int cambio=0;
+    int flag=0;
     ~gameO();
 
 private slots:
