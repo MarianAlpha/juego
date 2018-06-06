@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QGraphicsTextItem>
 #include <QGraphicsScene>
+#include <QMediaPlayer>
 #include <typeinfo>
 
 
@@ -16,6 +17,7 @@ public:
     explicit villano(QGraphicsItem *parent = nullptr);
     QTimer * timer = new QTimer();
     QTimer *pum = new QTimer();
+    QMediaPlayer *disp = new QMediaPlayer();
     int cont=0;
 private:
     int contador=0;

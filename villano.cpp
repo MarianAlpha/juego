@@ -49,6 +49,8 @@ void villano::move()
 void villano::shoot()
 {
     proyectilEjecutivo * bala = new proyectilEjecutivo();
+    disp->setMedia(QUrl("qrc:/sonido/disparomalo.mp3"));
+    disp->play();
     bala->setPos(this->x()-20,this->y()+25);
     scene()->addItem(bala);
 }

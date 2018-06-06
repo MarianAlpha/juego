@@ -18,6 +18,7 @@ void proyectilEjecutivo::move()
     QList<QGraphicsItem *> colliding_items = collidingItems();
     for (int i = 0, n = colliding_items.size(); i < n; i++ ){
         if (typeid(*(colliding_items[i])) == typeid(personaje)){
+            gamme->scene->removeItem(this);
             if(colliding_items[i]==gamme->perso){
                 gamme->vid1->decrece1();
                 qDebug()<<"bye1";
@@ -25,7 +26,8 @@ void proyectilEjecutivo::move()
                 gamme->vid2->decrece2();
                 qDebug()<<"bye2";
             }
-            gamme->scene->removeItem(this);
+            gamme->vt=(gamme->vid1->vj1)*10+gamme->vid2->vj2;
+            qDebug()<<gamme->vt<<"zzzzzzz";
             return;
         }
     }

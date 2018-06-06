@@ -10,6 +10,8 @@ extern gameO *gamme;
 
 vidas::vidas(QObject *parent) : QObject(parent)
 {
+    over = new QGraphicsTextItem();
+
     arduino_is_available = false;
     arduino_port_name = "COM3";
     arduino = new QSerialPort;
@@ -58,8 +60,8 @@ void vidas::decrece2()
 {
     vj2--;
     qDebug()<<vj2;
-    if(vj2<=0){
-        vj1=1;
+    if(vj2<1){
+        vj1=0;
         decrece1();
     };
 }
@@ -77,7 +79,6 @@ void vidas::GameOver()
     gamme->shoot->stop();
     gamme->musica->stop();
     gamme->scene->clear();
-    over = new QGraphicsTextItem();
     over->setPlainText(QString("GAME OVER"));
     over->setPos(300, 100);
     over->setDefaultTextColor(Qt::white);
@@ -92,12 +93,13 @@ void vidas::decrece1()
     vj1--;
     qDebug()<<vj1;
     if(vj1<=0) GameOver();
+
 }
 
 void vidas::vid()
 {
-    int vidT=(vj1*10)+vj2;
-    QString valor = QString::number(vidT);
+
+    QString valor = QString::number(gamme->vt);
     if(arduino->isWritable()){
         arduino->write(valor.toStdString().c_str());    }
 //    if(vj1==5){

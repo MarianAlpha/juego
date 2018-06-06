@@ -18,6 +18,13 @@ void AtaqueR1::move()
         if (typeid(*(colliding_items[i])) == typeid(personaje)){
             gamme->scene->removeItem(this);
             delete this;
+            if(colliding_items[i]==gamme->perso){
+                gamme->vid1->decrece1();
+                qDebug()<<"bye1";
+            } else if(colliding_items[i]==gamme->perso2){
+                gamme->vid2->decrece2();
+                qDebug()<<"bye2";
+            }
             return;
         }
     }

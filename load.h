@@ -23,7 +23,6 @@ public:
     int cont=0;
     int flag=0;
     QMediaPlayer *player;
-    void cargar();
 
 private slots:
     void on_back_clicked();

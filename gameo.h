@@ -55,7 +55,6 @@ public:
 
     //Class
     personaje * perso2;
-//    QGraphicsTextItem *over;
     personaje *perso;
     Ramsey *ramsey;
     proyectil * bala;
@@ -69,8 +68,9 @@ public:
     void puntaje();
     void cargar();
     void niveles();
-    int cont=0;
-    int p1=0, p2=0;
+    int cont;
+    int vt;
+    int p1, p2;
     int cambio=0;
     int flag=0;
     ~gameO();

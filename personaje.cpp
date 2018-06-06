@@ -88,7 +88,7 @@ void personaje::jump()
 void personaje::generar()
 {
     c++;
-    if(c<4){
+    if(c<11){
         enemigo = new villano();
         enemigo->setPos(WIDTH-100,HEIGHT-130);
         scene()->addItem(enemigo); //se coloca en la escena para que sea mostrada

@@ -69,5 +69,9 @@
         <file>Imagenes/pluma.png</file>
         <file>sonido/boton.mp3</file>
         <file>Imagenes/bye.png</file>
+        <file>sonido/Win.mp3</file>
+        <file>Imagenes/logo.png</file>
+        <file>Imagenes/logo2.png</file>
+        <file>sonido/disparomalo.mp3</file>
     </qresource>
 </RCC>

@@ -46,6 +46,14 @@ void Ramsey::win()
         timer->stop();
         setPixmap(QPixmap(":/Imagenes/bye.png"));
         setPos(x(),160);
+        winn = new QGraphicsTextItem();
+        winn->setPlainText(QString("YOU WIN!"));
+        winn->setPos(300, 100);
+        winn->setDefaultTextColor(Qt::white);
+        winn->setFont(QFont("Dead Kansas",50));
+        gamme->scene->addItem(winn);
+        musicaF->setMedia(QUrl("qrc:/sonido/Win.mp3"));
+        musicaF->play();
     }
     if(numplumas>=21){
         numplumas=0;

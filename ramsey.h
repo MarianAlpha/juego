@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include <QDebug>
 #include <QTimer>
+#include <QGraphicsTextItem>
 #include <QMediaPlayer>
 #include <QGraphicsScene>
 
@@ -16,6 +17,8 @@ public:
     QTimer * timer = new QTimer();
     QTimer * plumas = new QTimer();
     QTimer *huevos = new QTimer();
+    QGraphicsTextItem *winn;
+    QMediaPlayer *musicaF = new QMediaPlayer();
     int cont=0,cont1=0;
     int numplumas=0;
     int flag=0;

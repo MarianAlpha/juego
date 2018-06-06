@@ -124,9 +124,26 @@
     <string>return</string>
    </property>
   </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>600</x>
+     <y>390</y>
+     <width>171</width>
+     <height>101</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+   <property name="pixmap">
+    <pixmap resource="fondo.qrc">:/Imagenes/logo.png</pixmap>
+   </property>
+  </widget>
  </widget>
  <resources>
   <include location="gif.qrc"/>
+  <include location="fondo.qrc"/>
  </resources>
  <connections/>
 </ui>

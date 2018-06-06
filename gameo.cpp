@@ -16,25 +16,36 @@ gameO::gameO(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QString info;
-    string var;//String para leer los datos del archivo
+    ifstream archivo1;
+    archivo1.open(RUTA_ARCHIVO);
+    string var;
+    while(!archivo1.eof()){
+        getline(archivo1, var);
+    }
+    QString name = QString::fromStdString(var);
+    qDebug()<<name;
+    archivo1.close();
+
+    ifstream archivo;
+    archivo.open(var);
+    string line;
     int ent,contt=0;
-
-    QFile file(RUTA_ARCHIVO);           //Objeto para manejar la lectura del archivo
-    file.open(QIODevice::ReadOnly);     //Abre el archiv en modo lectura
-    info=file.readLine();
-
-//    QFile file2(info);           //Objeto para manejar la lectura del archivo
-//    file2.open(QIODevice::ReadOnly);     //Abre el archiv en modo lectura
-
-//    while(!file2.eof()){
-//        var=file.readLine();
-//        ent = atoi(var.c_str());
-//        if(contt==0) cont=ent;
-//        else if(contt==1) p1=ent;
-//        else if(contt==2) p2=ent;
-//        contt++;
-//    }
+    if(!archivo.fail()){
+        while(!archivo.eof()){
+            getline(archivo, line);
+            ent = atoi(line.c_str());
+            if(contt==0) cont=ent;
+            else if(contt==1) p1=ent;
+            else if(contt==2) p2=ent;
+            contt++;
+        }
+    }
+    else{
+        cont=0;
+        p1=0;
+        p2=0;
+    }
+    archivo.close();
 
     scene = new QGraphicsScene();
     scene->setSceneRect(0,0,1000,400); //se agrega el tamaño de la escena y la coordenada inicial
@@ -43,13 +54,12 @@ gameO::gameO(QWidget *parent) :
     setFixedSize(WIDTH,HEIGHT);
     ui->view->setScene(scene); // colocar la escena que se desea visualizar
     qDebug()<<cont<<" "<<p1<<" "<<p2<<"DDDD";
-    niveles();
+    //musica de fondo
+    musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));
+    musica->play();
     if(cont==0){
         scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Imagen nivel 1
 
-        //musica de fondo
-        musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));
-        musica->play();
     }
 
     //player 1
@@ -80,12 +90,7 @@ gameO::gameO(QWidget *parent) :
     //Vidas y puntaje
     vid1 = new vidas();
     vid2 = new vidas();
-//    over = new QGraphicsTextItem();
-//    over->setPlainText(QString(""));
-//    over->setPos(300, 100);
-//    over->setDefaultTextColor(Qt::white);
-//    over->setFont(QFont("times",50));
-//    scene->addItem(over);
+    niveles();
 }
 
 void gameO::keyPressEvent(QKeyEvent *event)
@@ -149,7 +154,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
     }
 
     else flag=0;
-    if(perso->pos().x()>800 && perso2->pos().x()>800) {
+    if(perso->pos().x()>800 && perso2->pos().x()>800 && perso->c==10) {
         cont++;
         niveles();
     }
