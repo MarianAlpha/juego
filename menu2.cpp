@@ -56,6 +56,12 @@ void menu2::on_save_clicked()
         ofstream save;
         save.open(b,ios::out);
         if(save.fail()) cout<<"Nop";
+        save.close();
+
+        ofstream restart;
+        restart.open("guardar.txt",ios::out);
+        restart<<"";
+        restart.close();
 
         comic *gamme =new comic();
         gamme->show();

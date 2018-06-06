@@ -1,6 +1,7 @@
 #include "gameo.h"
 #include "ui_gameo.h"
 #include "menu2.h"
+#include "mainwindow.h"
 #include <iostream>
 #include <QMessageBox>
 #include "load.h"
@@ -349,3 +350,21 @@ void gameO::on_save_clicked()
     save.close();
 }
 
+
+void gameO::on_restart_clicked()
+{
+    MainWindow *mainmenu = new MainWindow();
+    mainmenu->show();
+    close();
+}
+
+void gameO::on_restart_2_clicked()
+{
+    ofstream restart;
+    restart.open("guardar.txt",ios::out);
+    restart<<"";
+    restart.close();
+    gameO *gamme = new gameO();
+    gamme->show();
+    close();
+}

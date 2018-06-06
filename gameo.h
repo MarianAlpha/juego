@@ -70,6 +70,7 @@ public:
     void niveles();
     int cont;
     int vt;
+    int restart=0;
     int p1, p2;
     int cambio=0;
     int flag=0;
@@ -77,6 +78,10 @@ public:
 
 private slots:
     void on_save_clicked();
+
+    void on_restart_clicked();
+
+    void on_restart_2_clicked();
 
 private:
     Ui::gameO *ui;
