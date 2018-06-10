@@ -16,336 +16,312 @@ gameO::gameO(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ifstream archivo1;
-    archivo1.open(RUTA_ARCHIVO);
-    string var;
-    while(!archivo1.eof()){
-        getline(archivo1, var);
+    ifstream archivo1;                  //Define el archivo como lectura
+    archivo1.open(RUTA_ARCHIVO);        //Abre el archivo
+    string var;                         //Variable donde se guarda el nombre del archivo con los datos del jugador
+    while(!archivo1.eof()){             //Ciclo para recorrer el archivo
+        getline(archivo1, var);         //Guarda la primera linea del archivo en la variable var.
     }
-    QString name = QString::fromStdString(var);
-    qDebug()<<name;
-    archivo1.close();
+    archivo1.close();                   //Cierra el archivo
 
-    ifstream archivo;
-    archivo.open(var);
-    string line;
-    int ent,contt=0;
-    if(!archivo.fail()){
-        while(!archivo.eof()){
-            getline(archivo, line);
-            ent = atoi(line.c_str());
-            if(contt==0) cont=ent;
-            else if(contt==1) p1=ent;
-            else if(contt==2) p2=ent;
-            contt++;
+    ifstream archivo;                   //Define el archivo como lectura
+    archivo.open(var);                  //Abre el archivo del jugador
+    string line;                        //Variable donde se guardan los datos del archivo del jugador
+    int ent,contt=0;                    //Define el contador ent para guardar las variables convertidas en entero y contt para recorrer el archivo
+    if(!archivo.fail()){                //Si el archivo no falla
+        while(!archivo.eof()){          //Ciclo para recorrer el archivo (mientras no este al final)
+            getline(archivo, line);     //Obtengo una linea del archivo y la guardo en la variable line
+            ent = atoi(line.c_str());   //Convierto el dato de linea en un entero y lo guardo en la variable ent
+            if(contt==0) cont=ent;      //Si es la primera linea se le asignará cont(nivel)
+            else if(contt==1) p1=ent;   //De lo contrario si es la segunda linea sera el puntaje del jugador 1
+            else if(contt==2) p2=ent;   //De lo contrario si es la tercera linea sera el puntaje del jugador 2
+            contt++;                    //Aumenta el contador de las lineas
         }
     }
-    else{
-        cont=0;
-        p1=0;
-        p2=0;
+    else{                               //Si el archivo falla
+        cont=0;                         //Cont sera igual a 0(nivel 1)
+        p1=0;                           //El puntaje del jugador 1 empezara en 0
+        p2=0;                           //El puntaje del jugador 2 empezara en 0
     }
-    archivo.close();
+    archivo.close();                    //Cierra el archivo
 
-    scene = new QGraphicsScene();
-    scene->setSceneRect(0,0,1000,400); //se agrega el tamaño de la escena y la coordenada inicial
-    ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); //Quita las barras laterales
-    ui->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setFixedSize(WIDTH,HEIGHT);
-    ui->view->setScene(scene); // colocar la escena que se desea visualizar
-    qDebug()<<cont<<" "<<p1<<" "<<p2<<"DDDD";
+    scene = new QGraphicsScene();                                    //Crea escena
+    scene->setSceneRect(0,0,1000,400);                               //se agrega el tamaño de la escena y la coordenada inicial
+    ui->view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);  //Quita la barra de desplazamiento inferior
+    ui->view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);    //Quita la barra de desplazamineto lateral
+    setFixedSize(WIDTH,HEIGHT);                                      //Define el ancho y el alto maximo del widget
+    ui->view->setScene(scene);                                       // colocar la escena que se desea visualizar
+    qDebug()<<cont<<" "<<p1<<" "<<p2;                                //Imprime el nivel, el puntaje de jugador 1 y el puntaje de jugador 2
+
     //musica de fondo
-    musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));
-    musica->play();
+    musica->setMedia(QUrl("qrc:/sonido/lvl.mp3"));                   //Define la ruta del sonido del nivel 1
+    musica->play();                                                  //Reproduce el sonido
+
+    //Empieza en el nivel 1 por defecto
     if(cont==0){
-        scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Imagen nivel 1
+        scene->setBackgroundBrush(QBrush(QImage(":/Imagenes/lvl1.jpeg"))); //Fondo nivel 1
 
     }
 
     //player 1
-    perso = new personaje();
-    perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-    perso->setPos(15,280) ; // posicion inicial del jugador //
-    perso->setHeight(HEIGHT);
-    scene->addItem(perso);
+    perso = new personaje();                          //Crea el personaje 1
+    perso->setPixmap(QPixmap(":/Imagenes/p1.png"));   //Define la imagen del personaje 1
+    perso->setPos(15,280) ;                           //Posicion inicial del personaje 1
+    perso->setHeight(HEIGHT);                         //Altura maxima del salto
+    scene->addItem(perso);                            //Añade el personaje 1 a la escena
 
     //player 2
-    perso2 =new personaje();
-    perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-    perso2->setPos(20,280);
-    perso2->setHeight(HEIGHT);
-    scene->addItem(perso2);
+    perso2 =new personaje();                             //Crea el personaje 2
+    perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));   //Define la imagen del personaje 2
+    perso2->setPos(20,280);                              //Posicion inicial del personaje 2
+    perso2->setHeight(HEIGHT);                           //Altura maxima del salto
+    scene->addItem(perso2);                              //Añade el personaje 2 a la escena
 
     //Villanos y trampas
-    QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));//Genera el Villano
-    QObject::connect(TGame2, SIGNAL(timeout()),perso,SLOT(generar3()));//Genera el alien del lvl2
-    QObject::connect(TGame1, SIGNAL(timeout()),perso,SLOT(generar2()));//Genera la trampa del lvl3
-    TGame->start(3500);
+    QObject::connect(TGame, SIGNAL(timeout()),perso,SLOT(generar()));    //Genera el Villano
+    QObject::connect(TGame2, SIGNAL(timeout()),perso,SLOT(generar3()));  //Genera las palomas del lvl2
+    QObject::connect(TGame1, SIGNAL(timeout()),perso,SLOT(generar2()));  //Genera la trampa del lvl3
+    TGame->start(3500);                                                  //Inicia el timer que genera los villanos
 
     //Timer saltos
-    QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump())); //saltar player1
-    QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump())); //saltar player2
-    Tjump->start(45);
+    QObject::connect(Tjump, SIGNAL(timeout()),perso,SLOT(jump()));      //saltar player1
+    QObject::connect(Tjump, SIGNAL(timeout()),perso2,SLOT(jump()));     //saltar player2
+    Tjump->start(45);                                                   //Inicia el timer para saltar
 
     //Vidas y puntaje
-    vid1 = new vidas();
-    vid2 = new vidas();
-    niveles();
+    vid1 = new vidas();           //Crea las vidas del jugador 1
+    vid2 = new vidas();           //Crea las vidas del jugador 2
+    niveles();                    //Llama el metodo niveles y comienza en el nivel cargado
 }
 
 void gameO::keyPressEvent(QKeyEvent *event)
 {
-    //personaje 1
-    if (event->key() == Qt::Key_J){              //Movimiento izquierda
-        perso->settBanLeft();                    //Levanta la bandera para moverse a la izquierda
-        perso->setPixmap(QPixmap(":/Imagenes/p22"));
-        qDebug() << "left";
+    //___________personaje 1______________________________________________________________________________________
 
-    } else if (event->key() == Qt::Key_L){       //Movimiento izquierda
-        perso->settBanRight();                   //Levanta la bandera para moverse a la izquierda
-        perso->setPixmap(QPixmap(":/Imagenes/p2.png"));
-        qDebug() << "right";
+    if (event->key() == Qt::Key_J){                       //Definimos la tecla para el movimiento izquierda
+        perso->settBanLeft();                             //Levanta la bandera para moverse a la izquierda
+        perso->setPixmap(QPixmap(":/Imagenes/p22"));      //Define la imagen de movimiento a la izquierda
+        qDebug() << "left";                               //Imprime que mueve hacia la izquierda
 
-    } else if (event->key() == Qt::Key_Space){  //Disparo
-        proyectil * bala1 = new proyectil();
-        perso->setPixmap(QPixmap(":/Imagenes/disparo.png"));
-        bala1->setPixmap(QPixmap(":/Imagenes/proyectil.png"));
-        shoot->setMedia(QUrl("qrc:/sonido/Rasengan.mp3"));
-        shoot->play();
-        bala1->setPos(perso->x()+60,perso->y()+20); //Posicion del proyectil deacuerdo a la posicion del jugador
-        scene->addItem(bala1);
-        qDebug() << "bullet";
+    } else if (event->key() == Qt::Key_L){                //Definimos la tecla para el movimiento Derecha
+        perso->settBanRight();                            //Levanta la bandera para moverse a la Derecha
+        perso->setPixmap(QPixmap(":/Imagenes/p2.png"));   //Define la imagen de movimiento a la Derecha
+        qDebug() << "right";                              //Imprime que mueve hacia la Derecha
+
+    } else if (event->key() == Qt::Key_H){                       //Definimos la tecla para disparar
+        bala1 = new proyectil();                                 //Crea el tipo proyectil
+        perso->setPixmap(QPixmap(":/Imagenes/disparo.png"));     //Cambia la imagen para cuando dispare
+        bala1->setPixmap(QPixmap(":/Imagenes/proyectil.png"));   //Define la imagen del proyectil
+        shoot->setMedia(QUrl("qrc:/sonido/Rasengan.mp3"));       //Define la ruta del sonido del proyectil
+        shoot->play();                                           //Reproduce el sonido
+        bala1->setPos(perso->x()+60,perso->y()+20);              //Posicion del proyectil deacuerdo a la posicion del jugador 1
+        scene->addItem(bala1);                                   //Añade el proyectil a la escena
+        qDebug() << "bullet";                                    //Imprimir que se generó un proyectil
     }
-    else if(event->key()==Qt::Key_I){
-        perso->setBandera(); //Activa la bandera para saltar
+    else if(event->key()==Qt::Key_I){                            //Tecla para saltar
+        perso->setBandera();                                     //Activa la bandera para saltar
     }
 
-    //___________personaje 2___________________________
+    //___________personaje 2______________________________________________________________________________________________
 
-    else if (event->key() == Qt::Key_A){
-        perso2->settBanLeft();
-        perso2->setPixmap(QPixmap(":/Imagenes/pl23.png"));
-        qDebug() << "left 2";
+    else if (event->key() == Qt::Key_A){                         //Define la tecla para el movimiento izquierda
+        perso2->settBanLeft();                                   //Levanta la bandera para el movimiento a la izquierda
+        perso2->setPixmap(QPixmap(":/Imagenes/pl23.png"));       //Define la imagen para el movimiento a la izquierda
+        qDebug() << "left 2";                                    //Imprime que el jugador 2 se movio hacia la izquierda
 
-    } else if (event->key() == Qt::Key_D){
-        perso2->settBanRight();
-        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-        qDebug() << "right2";
+    } else if (event->key() == Qt::Key_D){                       //Define la tecla parael movimiento derecha
+        perso2->settBanRight();                                  //Levanta la bandera para el movimiento a la derecha
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));       //Define la imagen para el movimiento a la derecha
+        qDebug() << "right2";                                    //Imprime que el jugador 2 se movio hacia la derecha
         puntaje();
 
-    } else if (event->key() == Qt::Key_F){
-        bala = new proyectil();
-        bala->setPixmap(QPixmap(":/Imagenes/gato.png"));
-        piu->setMedia(QUrl("qrc:/sonido/rifle.mp3"));
-        piu->play();
-        bala->setPos(perso2->x()+50,perso2->y()+10);
-        scene->addItem(bala);
-        qDebug() << "bullet2";
+    } else if (event->key() == Qt::Key_F){                       //Definimos la tecla para disparar
+        bala = new proyectil();                                  //Crea el tipo proyectil
+        bala->setPixmap(QPixmap(":/Imagenes/gato.png"));         //Define la imagen del proyectil
+        piu->setMedia(QUrl("qrc:/sonido/rifle.mp3"));            //Define la ruta del sonido del proyectil
+        piu->play();                                             //Reproduce el sonido
+        bala->setPos(perso2->x()+50,perso2->y()+10);             //Posicion del proyectil deacuerdo a la posicion del jugador 2
+        scene->addItem(bala);                                    //Añade el proyectil a la escena
+        qDebug() << "bullet2";                                   //Inprimer que se generó un proyectil
 
     }
-    else if(event->key()==Qt::Key_W){
-        perso2->setBandera();
+    else if(event->key()==Qt::Key_W){                            //Tecla para saltal
+        perso2->setBandera();                                    //Activa bandera para saltar
     }
 
-    if(vid1->vj1<=0){
-        piu->stop();
-        shoot->stop();
-        scene->removeItem(bala);
+    if(vid1->vj1<=0){                                           //Si las vidas del jugador 1 llegan a 0
+        piu->stop();                                            //Detiene el sonido del disparo del jugador 2
+        shoot->stop();                                          //Detiene el sonidodel disparo del juagdor 1
+        scene->removeItem(bala);                                //Remueve de la escena el item bala
     }
 
-    else flag=0;
-    if(perso->pos().x()>800 && perso2->pos().x()>800 && perso->c==10) {
-        cont++;
-        niveles();
+    if(perso->pos().x()>800 && perso2->pos().x()>800 && perso->c==10) {  //Si la posicion de ambos jugadores es mayor a 800 y han eliminado a 10 enemigos
+        cont++;                                                          //El contador del nivel  aumentara
+        niveles();                                                       //Llama el metodo niveles para generar el siguiente nivel
     }
 }
 
 void gameO::keyReleaseEvent(QKeyEvent *event)
 {
-    if (event->key() == Qt::Key_J){
-        perso->resettBanLeft();
-        perso->setPixmap(QPixmap(":/Imagenes/p11.png"));
+    if (event->key() == Qt::Key_J){                                      //Si la tecla J esta presionada
+        perso->resettBanLeft();                                          //Se reinicia la bandera de mover a la izquierda
+        perso->setPixmap(QPixmap(":/Imagenes/p11.png"));                 //Se cambia la imagen para dar la ilucion de que camina
+        qDebug() << "left out";                                          //Imprime que se dejo de mover
 
-        qDebug() << "left out";
+    } else if (event->key() == Qt::Key_L){                               //Si la tecla L esta presionada
+        perso->resettBanRight();                                         //Se reinicia la bandera de mover a la derecha
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));                  //Se cambia la imagen para dar la ilucion de que camina
+        qDebug() << "right out";                                         //Imprime que se dejo de mover
 
-    } else if (event->key() == Qt::Key_L){
-        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-        perso->resettBanRight();
-        qDebug() << "right out";
+    }else if (event->key() == Qt::Key_A){                                //Si la tecla A esta presionada
+        perso2->resettBanLeft();                                         //Se reinicia la bandera de mover a la izquierda
+        perso2->setPixmap(QPixmap(":/Imagenes/pl22.png"));               //Se cambia la imagen para dar la ilucion de que camina
+        qDebug() << "left 2 out";                                        //Imprime que se dejo de mover
 
-    }else if (event->key() == Qt::Key_A){
-        perso2->resettBanLeft();
-        perso2->setPixmap(QPixmap(":/Imagenes/pl22.png"));
-        qDebug() << "left 2 out";
-
-    } else if (event->key() == Qt::Key_D){
-        perso2->resettBanRight();
-        perso2->setPixmap(QPixmap(":/Imagenes/pl11.png"));
-        qDebug() << "right 2 out";
+    } else if (event->key() == Qt::Key_D){                               //Si la tecla D esta presionada
+        perso2->resettBanRight();                                        //Se reinicia la bandera de mover a la derecha
+        perso2->setPixmap(QPixmap(":/Imagenes/pl11.png"));               //Se cambia la imagen para dar la ilucion de que camina
+        qDebug() << "right 2 out";                                       //Imprime que se dejo de mover
     }
 }
 
 void gameO::puntaje()
 {
-    p1+=10;
-    p2+=10;
-    ui->pun1->display(p1);
-    ui->pun2->display(p2);
-}
-
-void gameO::cargar()
-{
-    string var; //nombre del archivo donde se guardan los nombres de las sesiones
-    string datos;
-    int ent,contt=0;
-
-    ifstream loa;
-    loa.open("guardar.txt",ios::in);
-    getline(loa, var);
-
-    ifstream cargar;
-    cargar.open(var,ios::in);
-    while(!cargar.eof()){
-        getline(cargar, datos);
-        ent = atoi(var.c_str());
-        if(contt==0) cont=ent;
-        else if(contt==1) p1=ent;
-        else if(contt==2) p2=ent;
-        contt++;
-    }
+    p1+=10;                                                            //Cada vez que se llame el metodo puntaje, el score del jugador 1 aumentara el 10
+    p2+=10;                                                            //Cada vez que se llame el metodo puntaje, el score del jugador 2 aumentara el 10
+    ui->pun1->display(p1);                                             //Muestra el puntaje del jugador 1 en el display
+    ui->pun2->display(p2);                                             //Muestra el puntaje del jugador 2 en el display
 }
 
 void gameO::niveles()
 {
-    //_____________________NIVEL2__________________________________________________
+    //_____________________NIVEL2__________________________________________________________________________________
     if(cont==1){
-        TGame->stop();
-        TGame1->stop();
-        TGame2->stop();
-        scene->removeItem(rect);
-        scene->removeItem(perso);
-        scene->removeItem(perso2);
-        scene->clear();
-        scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));
-        scene->addItem(perso);
-        scene->addItem(perso2);
+        //Si cont es igual a 1
+        TGame->stop();                                                  //Para el timer de los villanos
+        TGame1->stop();                                                 //Para el timer de las trampas
+        TGame2->stop();                                                 //Para el timer de las palomas
+        scene->removeItem(perso);                                       //Quita el jugador 1 de la escena
+        scene->removeItem(perso2);                                      //Quita el jugador 2 de la escena
+        scene->clear();                                                 //Limpia la escena
 
-        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-        perso->setHeight(HEIGHT);
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl2.png"));       //Define el fondo del nivel 2
+        scene->addItem(perso);                                          //Añade el personaje 1 a la escena
+        scene->addItem(perso2);                                         //Añade el personaje 2 a la escena
 
-        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-        perso2->setHeight(HEIGHT);
-        perso2->setPos(20,280);
-        perso->setPos(15, 280);
-        perso->c=0;
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));                 //Define la imagen del personaje 1
+        perso->setHeight(HEIGHT);                                       //Define la altula maxima
 
-        TGame->start(2500);
-        TGame2->start(2800);
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));              //Define la imagen para el personaje 2
+        perso2->setHeight(HEIGHT);                                      //Define la  altura maxima
+
+        perso2->setPos(20,280);                                         //Define la posicion del personaje 2
+        perso->setPos(15, 280);                                         //Define la posicion del personaje 1
+        perso->c=0;                                                     //Reinicia el contador de los villanos
+
+        TGame->start(2500);                                             //Inicia el timer de los villanos
+        TGame2->start(2800);                                            //Inicia el timer de las palomas
     }
-    //_____________________NIVEL3__________________________________________________
-    else if(cont==2){
-        //limpia la escena, para los timers y elimina los punteros
-        TGame->stop();
-        TGame1->stop();
-        TGame2->stop();
-        scene->removeItem(rect);
-        scene->removeItem(perso);
-        scene->removeItem(perso2);
-        scene->clear(); //limpia la escene
+    //_____________________NIVEL3_______________________________________________________________________________
+    else if(cont==2){                                                   //Si cont es igual a 2
 
-        //Crea la escena y los personajes
-        scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));
-        scene->addItem(perso);
-        scene->addItem(perso2);
+        TGame->stop();                                                  //Para el timer de los villanos
+        TGame1->stop();                                                 //Para el timer de las trampas
+        TGame2->stop();                                                 //Para el timer de las palomas                                       //Quitar el jugador 1 de la escena
+        scene->removeItem(perso);                                       //Quitar el jugador 1 de la escena
+        scene->removeItem(perso2);                                      //Quitar el jugador 2 de la escena
+        scene->clear();                                                 //Limpia la escena
 
-        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-        perso->setHeight(HEIGHT);
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl5.gif"));       //Define el fondo del nivel 3
+        scene->addItem(perso);                                          //Añade el personaje 1 a la escena
+        scene->addItem(perso2);                                         //Añade el personaje 2 a la escena
 
-        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-        perso2->setHeight(HEIGHT);
-        perso2->setPos(20,280);
-        perso->setPos(15, 280);
-        perso->c=0;
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));                 //Define la imagen del personaje 1
+        perso->setHeight(HEIGHT);                                       //Define la altura maxima
 
-        TGame->start(2500);
-        TGame1->start(2600);
-        TGame2->start(2800);
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));              //Define la imagen del personaje 2
+        perso2->setHeight(HEIGHT);                                      //Define la altura maxima
+
+        perso2->setPos(20,280);                                         //Define la posicion del personaje 2
+        perso->setPos(15, 280);                                         //Define la posicion del personaje 1
+        perso->c=0;                                                     //Reinicia el contador de los villanos
+
+        TGame->start(2500);                                             //Inicia el timer de los villanos
+        TGame1->start(2600);                                            //Inicia el timer de las trampas
+        TGame2->start(2800);                                            //Inicia el timer de las palomas
 
     //_____________________NIVEL4__________________________________________________
-    }else if(cont==3){
-        //limpia la escena, para los timers y elimina los punteros
-        TGame->stop();
-        TGame1->stop();
-        TGame2->stop();
-        scene->removeItem(rect);
-        scene->removeItem(perso);
-        scene->removeItem(perso2);
-        scene->clear(); //limpia la escene
+    }else if(cont==3){                                                  //Si cont es igual a 3
 
-        //Crea la escena y los personajes
-        scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));
-        scene->addItem(perso);
-        scene->addItem(perso2);
+        TGame->stop();                                                  //Para el timer de los villanos
+        TGame1->stop();                                                 //Para el timer de las trampas
+        TGame2->stop();                                                 //Para el timer de las palomas
+        scene->removeItem(perso);                                       //Quitar el personaje 1 de la escena
+        scene->removeItem(perso2);                                      //Quitar el personaje 2 de la escena
+        scene->clear();                                                 //Limpia la escena
 
-        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-        perso->setHeight(HEIGHT);
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvl.gif"));        //Define el fondo del nivel 4
+        scene->addItem(perso);                                          //Añade el personaje 1 a la escena
+        scene->addItem(perso2);                                         //Añade el personaje 2 a la escena
 
-        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-        perso2->setHeight(HEIGHT);
-        perso2->setPos(20,280);
-        perso->setPos(15, 280);
-        perso->c=0;
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));                 //Define la imagen del ersonaje 1
+        perso->setHeight(HEIGHT);                                       //Define la altura maxima
 
-        TGame->start(2500);
-        TGame1->start(2600);
-        TGame2->start(2800);
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));              //Define la imagen del personaje 2
+        perso2->setHeight(HEIGHT);                                      //Define la altura maxima
+
+        perso2->setPos(20,280);                                         //Define la posicion del personaje 2
+        perso->setPos(15, 280);                                         //Define la posicion del personaje 1
+        perso->c=0;                                                     //Reinicia el contador de los villanos
+
+        TGame->start(2500);                                             //Inicia el timer de los villanos
+        TGame1->start(2600);                                            //Inicia el timer de las trampas
+        TGame2->start(2800);                                            //Inicia el timer de las palomas
     }
     //_____________________NIVEL FINAL__________________________________________________
-    else if(cont==4){
-        //limpia la escena, para los timers y elimina los punteros
-        musica->stop();
-        TGame->stop();
-        TGame1->stop();
-        TGame2->stop();
-        scene->removeItem(rect);
-        scene->removeItem(perso);
-        scene->removeItem(perso2);
-        scene->clear(); //limpia la escene
+    else if(cont==4){                                                   //Si cont es igual a 4
 
-        //Crea la escena y los personajes
-        scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));
-        scene->addItem(perso);
-        scene->addItem(perso2);
+        musica->stop();                                                 //Para la musica de fondo
+        TGame->stop();                                                  //Detiene el timer de los villanos
+        TGame1->stop();                                                 //Detiene el timer de las trampas
+        TGame2->stop();                                                 //Detiene el timer de las palomas
+        scene->removeItem(perso);                                       //Remueve el personaje 1 de la escena
+        scene->removeItem(perso2);                                      //Remueve el personaje 2 de la escena
+        scene->clear();                                                 //limpia la escene
 
-        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));
-        perso->setHeight(HEIGHT);
+        scene->setBackgroundBrush(QImage(":/Imagenes/lvlu.png"));       //Define el fondo del nivel final
+        scene->addItem(perso);                                          //Añade el personaje 1 a la escena
+        scene->addItem(perso2);                                         //Añade el personaje 2 a la escena
 
-        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));
-        perso2->setHeight(HEIGHT);
-        perso2->setPos(20,280);
-        perso->setPos(15, 280);
+        perso->setPixmap(QPixmap(":/Imagenes/p1.png"));                 //Define la imagen del personaje 1
+        perso->setHeight(HEIGHT);                                       //Define la altura maxima
 
-        //crea el jefe final
-        ramsey = new Ramsey;
-        ramsey->setPos(620,15);
-        scene->addItem(ramsey);
-        music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));
-        music->play();
+        perso2->setPixmap(QPixmap(":/Imagenes/pl12.png"));              //Define la imagen del personaje 2
+        perso2->setHeight(HEIGHT);                                      //Define la altura maxima
+
+        perso2->setPos(20,280);                                         //Define la posicion del personaje 2
+        perso->setPos(15, 280);                                         //Define la posicion del personaje 1
+
+        ramsey = new Ramsey;                                            //Crea la clase Ramsey que es el jefe final
+        ramsey->setPos(620,15);                                         //Define la posicion del jefe final
+        scene->addItem(ramsey);                                         //Añade a Ramsey a la escena
+        music->setMedia(QUrl("qrc:/sonido/BossP.mp3"));                 //Define la ruta de la musica de fondo del nivel
+        music->play();                                                  //Reproduce la musica
     }
 }
 
 gameO::~gameO()
 {
-    delete ui;
+    delete ui;                                                        //Destrucctor del juego
 }
 
 void gameO::on_save_clicked()
 {
-    ofstream save;
-    save.open(menu->b,ios::out);
-    save<<cont<<endl;
-    save<<p1<<endl;
-    save<<p2<<endl;
-    save.close();
+    ofstream save;                                                   //Define el archivo en modo de escritura
+    save.open(menu->b,ios::out);                                     //Abre el archivo
+    save<<cont<<endl;                                                //Escribe el nivel actual
+    save<<p1<<endl;                                                  //Escriber el puntaje del jugador 1
+    save<<p2<<endl;                                                  //Escribe el puntaje del jugador 2
+    save.close();                                                    //Cierra el archivo
 }
 

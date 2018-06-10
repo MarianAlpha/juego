@@ -54,10 +54,11 @@ public:
     QTimer *puntajes = new QTimer();
 
     //Class
-    personaje * perso2;
+    personaje *perso2;
     personaje *perso;
     Ramsey *ramsey;
-    proyectil * bala;
+    proyectil *bala;
+    proyectil *bala1;
     vidas *vid1;
     vidas *vid2;
 
@@ -66,7 +67,6 @@ public:
     void keyReleaseEvent(QKeyEvent * event);
     void setHeight(int w);
     void puntaje();
-    void cargar();
     void niveles();
     int cont;
     int vt;
