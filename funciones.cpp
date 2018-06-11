@@ -3,5 +3,5 @@
 #include <ctime>
 
 void delay(int secs) {
-for(int i = (time(NULL) + secs); time(NULL) != i; time(NULL));
+for(int i = (time(NULL) + secs); time(NULL) != i; time(NULL));   //Detiene el programa
 }

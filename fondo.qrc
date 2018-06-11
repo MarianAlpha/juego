@@ -4,16 +4,7 @@
         <file>Imagenes/lvl1.jpeg</file>
         <file>Imagenes/ladrillo.jpg</file>
         <file>Imagenes/barricada.png</file>
-        <file>Imagenes/p1.png</file>
-        <file>Imagenes/p11.png</file>
-        <file>Imagenes/p2.png</file>
-        <file>Imagenes/p22.png</file>
-        <file>Imagenes/disparo.png</file>
         <file>Imagenes/proyectil.png</file>
-        <file>Imagenes/pl11.png</file>
-        <file>Imagenes/pl12.png</file>
-        <file>Imagenes/pl22.png</file>
-        <file>Imagenes/pl23.png</file>
         <file>Imagenes/gato.png</file>
         <file>Imagenes/lvl5.gif</file>
         <file>Imagenes/lvl2.png</file>
@@ -73,5 +64,15 @@
         <file>Imagenes/logo.png</file>
         <file>Imagenes/logo2.png</file>
         <file>sonido/disparomalo.mp3</file>
+        <file>Imagenes/pl11.png</file>
+        <file>Imagenes/pl12.png</file>
+        <file>Imagenes/pl22.png</file>
+        <file>Imagenes/pl23.png</file>
+        <file>Imagenes/p2.png</file>
+        <file>Imagenes/p22.png</file>
+        <file>Imagenes/disparo.png</file>
+        <file>Imagenes/disparo2.png</file>
+        <file>Imagenes/p1.png</file>
+        <file>Imagenes/p11.png</file>
     </qresource>
 </RCC>

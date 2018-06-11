@@ -112,7 +112,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
         bala1 = new proyectil();                                 //Crea el tipo proyectil
         perso->setPixmap(QPixmap(":/Imagenes/disparo.png"));     //Cambia la imagen para cuando dispare
         bala1->setPixmap(QPixmap(":/Imagenes/proyectil.png"));   //Define la imagen del proyectil
-        shoot->setMedia(QUrl("qrc:/sonido/Rasengan.mp3"));       //Define la ruta del sonido del proyectil
+        shoot->setMedia(QUrl("qrc:/sonido/rifle.mp3"));          //Define la ruta del sonido del proyectil
         shoot->play();                                           //Reproduce el sonido
         bala1->setPos(perso->x()+60,perso->y()+20);              //Posicion del proyectil deacuerdo a la posicion del jugador 1
         scene->addItem(bala1);                                   //Añade el proyectil a la escena
@@ -137,6 +137,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
 
     } else if (event->key() == Qt::Key_F){                       //Definimos la tecla para disparar
         bala = new proyectil();                                  //Crea el tipo proyectil
+        perso2->setPixmap(QPixmap(":/Imagenes/disparo2.png"));   //Cambia la imagen para disparar
         bala->setPixmap(QPixmap(":/Imagenes/gato.png"));         //Define la imagen del proyectil
         piu->setMedia(QUrl("qrc:/sonido/rifle.mp3"));            //Define la ruta del sonido del proyectil
         piu->play();                                             //Reproduce el sonido
@@ -250,7 +251,7 @@ void gameO::niveles()
         TGame1->start(2600);                                            //Inicia el timer de las trampas
         TGame2->start(2800);                                            //Inicia el timer de las palomas
 
-    //_____________________NIVEL4__________________________________________________
+    //_____________________NIVEL4__________________________________________________________________________________
     }else if(cont==3){                                                  //Si cont es igual a 3
 
         TGame->stop();                                                  //Para el timer de los villanos

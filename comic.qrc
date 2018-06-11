@@ -3,5 +3,7 @@
         <file>Imagenes/comic1.png</file>
         <file>Imagenes/comic2.png</file>
         <file>Imagenes/comic3.png</file>
+        <file>Imagenes/comic4.png</file>
+        <file>Imagenes/tutorial.png</file>
     </qresource>
 </RCC>
