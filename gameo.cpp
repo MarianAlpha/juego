@@ -2,6 +2,7 @@
 #include "ui_gameo.h"
 #include "menu2.h"
 #include <iostream>
+#include "mainwindow.h"
 #include <QMessageBox>
 #include "load.h"
 #include <fstream>
@@ -16,34 +17,34 @@ gameO::gameO(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ifstream archivo1;                  //Define el archivo como lectura
-    archivo1.open(RUTA_ARCHIVO);        //Abre el archivo
-    string var;                         //Variable donde se guarda el nombre del archivo con los datos del jugador
-    while(!archivo1.eof()){             //Ciclo para recorrer el archivo
-        getline(archivo1, var);         //Guarda la primera linea del archivo en la variable var.
-    }
-    archivo1.close();                   //Cierra el archivo
+//    ifstream archivo1;                  //Define el archivo como lectura
+//    archivo1.open(RUTA_ARCHIVO);        //Abre el archivo
+//    string var;                         //Variable donde se guarda el nombre del archivo con los datos del jugador
+//    while(!archivo1.eof()){             //Ciclo para recorrer el archivo
+//        getline(archivo1, var);         //Guarda la primera linea del archivo en la variable var.
+//    }
+//    archivo1.close();                   //Cierra el archivo
 
-    ifstream archivo;                   //Define el archivo como lectura
-    archivo.open(var);                  //Abre el archivo del jugador
-    string line;                        //Variable donde se guardan los datos del archivo del jugador
-    int ent,contt=0;                    //Define el contador ent para guardar las variables convertidas en entero y contt para recorrer el archivo
-    if(!archivo.fail()){                //Si el archivo no falla
-        while(!archivo.eof()){          //Ciclo para recorrer el archivo (mientras no este al final)
-            getline(archivo, line);     //Obtengo una linea del archivo y la guardo en la variable line
-            ent = atoi(line.c_str());   //Convierto el dato de linea en un entero y lo guardo en la variable ent
-            if(contt==0) cont=ent;      //Si es la primera linea se le asignará cont(nivel)
-            else if(contt==1) p1=ent;   //De lo contrario si es la segunda linea sera el puntaje del jugador 1
-            else if(contt==2) p2=ent;   //De lo contrario si es la tercera linea sera el puntaje del jugador 2
-            contt++;                    //Aumenta el contador de las lineas
-        }
-    }
-    else{                               //Si el archivo falla
-        cont=0;                         //Cont sera igual a 0(nivel 1)
-        p1=0;                           //El puntaje del jugador 1 empezara en 0
-        p2=0;                           //El puntaje del jugador 2 empezara en 0
-    }
-    archivo.close();                    //Cierra el archivo
+//    ifstream archivo;                   //Define el archivo como lectura
+//    archivo.open(var);                  //Abre el archivo del jugador
+//    string line;                        //Variable donde se guardan los datos del archivo del jugador
+//    int ent,contt=0;                    //Define el contador ent para guardar las variables convertidas en entero y contt para recorrer el archivo
+//    if(!archivo.fail()){                //Si el archivo no falla
+//        while(!archivo.eof()){          //Ciclo para recorrer el archivo (mientras no este al final)
+//            getline(archivo, line);     //Obtengo una linea del archivo y la guardo en la variable line
+//            ent = atoi(line.c_str());   //Convierto el dato de linea en un entero y lo guardo en la variable ent
+//            if(contt==0) cont=ent;      //Si es la primera linea se le asignará cont(nivel)
+//            else if(contt==1) p1=ent;   //De lo contrario si es la segunda linea sera el puntaje del jugador 1
+//            else if(contt==2) p2=ent;   //De lo contrario si es la tercera linea sera el puntaje del jugador 2
+//            contt++;                    //Aumenta el contador de las lineas
+//        }
+//    }
+//    else{                               //Si el archivo falla
+//        cont=0;                         //Cont sera igual a 0(nivel 1)
+//        p1=0;                           //El puntaje del jugador 1 empezara en 0
+//        p2=0;                           //El puntaje del jugador 2 empezara en 0
+//    }
+//    archivo.close();                    //Cierra el archivo
 
     scene = new QGraphicsScene();                                    //Crea escena
     scene->setSceneRect(0,0,1000,400);                               //se agrega el tamaño de la escena y la coordenada inicial
@@ -156,7 +157,7 @@ void gameO::keyPressEvent(QKeyEvent *event)
         scene->removeItem(bala);                                //Remueve de la escena el item bala
     }
 
-    if(perso->pos().x()>800 && perso2->pos().x()>800 && perso->c==10) {  //Si la posicion de ambos jugadores es mayor a 800 y han eliminado a 10 enemigos
+    if(perso->pos().x()>800 && perso2->pos().x()>800 && perso->c>=5) {  //Si la posicion de ambos jugadores es mayor a 800 y han eliminado a 10 enemigos
         cont++;                                                          //El contador del nivel  aumentara
         niveles();                                                       //Llama el metodo niveles para generar el siguiente nivel
     }
@@ -326,3 +327,11 @@ void gameO::on_save_clicked()
     save.close();                                                    //Cierra el archivo
 }
 
+
+void gameO::on_save_2_clicked()
+{
+    MainWindow *menu = new MainWindow();                            //Crea una ventana main manu
+    menu->show();                                                   //Muestra la ventana
+    music->stop();                                                  //Detiene la musica
+    close();                                                        //Cierra la ventana
+}

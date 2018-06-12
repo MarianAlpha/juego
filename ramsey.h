@@ -18,6 +18,7 @@ public:
     QTimer * plumas = new QTimer();
     QTimer *huevos = new QTimer();
     QGraphicsTextItem *winn;
+    QGraphicsPixmapItem *pchente;
     QMediaPlayer *musicaF = new QMediaPlayer();
     int cont=0,cont1=0;
     int numplumas=0;

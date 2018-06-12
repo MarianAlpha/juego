@@ -27,7 +27,7 @@ private:
     int ban_left;
     int ban_right;
     int height;
-    float delta = 0;
+    float delta = 0,delta2;
 
 signals:
 

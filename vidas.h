@@ -13,8 +13,8 @@ class vidas : public QObject
 public:
     explicit vidas(QObject *parent = nullptr);
 
-    int vj1=5;
-    int vj2=5;
+    int vj1=8;
+    int vj2=8;
     QTimer *tiempo=new QTimer();
     QMediaPlayer *play =new QMediaPlayer();
     QGraphicsTextItem *over;

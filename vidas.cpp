@@ -102,32 +102,4 @@ void vidas::vid()
     QString valor = QString::number(gamme->vt);
     if(arduino->isWritable()){
         arduino->write(valor.toStdString().c_str());    }
-//    if(vj1==5){
-//        if(arduino->isWritable()){
-//            arduino->write("5");}}
-
-//    if(vj1==4){
-//        if(arduino->isWritable()){
-//            arduino->write("4");}}
-
-//    if(vj1==3){
-//        if(arduino->isWritable()){
-//            arduino->write("3");}}
-
-//    if(vj1==2){
-//        if(arduino->isWritable()){
-//            arduino->write("2");}}
-
-//    if(vj1==1){
-//        if(arduino->isWritable()){
-//            arduino->write("1");}}
-
-//    if(vj1==0){
-//        if(arduino->isWritable()){
-//            arduino->write("0");}}
-
-//    if(vj1<0){
-//        if(arduino->isWritable()){
-//            arduino->write("9");}
-//    }
 }

@@ -82,3 +82,5 @@ RESOURCES += \
     fondo.qrc
 
 DISTFILES +=
+
+RC_ICONS = icon.ico

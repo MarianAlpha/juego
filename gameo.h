@@ -68,15 +68,17 @@ public:
     void setHeight(int w);
     void puntaje();
     void niveles();
-    int cont;
+    int cont=0;
     int vt;
-    int p1, p2;
+    int p1=0, p2=0;
     int cambio=0;
     int flag=0;
     ~gameO();
 
 private slots:
     void on_save_clicked();
+
+    void on_save_2_clicked();
 
 private:
     Ui::gameO *ui;
